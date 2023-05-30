@@ -48,6 +48,25 @@
         </div>
     </div>
     @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.addEventListener('swal:confirm', event => {
+            swal.fire({
+                title: event.detail.title,
+                text: event.detail.text,
+                icon: event.detail.type,
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(239 68 6)',
+                confirmButtonText: 'Да, удалить!',
+                cancelButtonText: 'Отмена',
+            })
+                .then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        window.livewire.emit(event.detail.method, event.detail.id);
+                    }
+                });
+        });
+    </script>
 </body>
 
 </html>

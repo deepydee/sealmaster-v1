@@ -46,9 +46,21 @@
                     @include('svg.home')
                     {{ __('Dashboard') }}
                 </x-nav-link>
-                <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')">
+                <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile')">
                     @include('svg.users')
                     {{ __('Users') }}
+                </x-nav-link>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                      <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
+                    </div>
+                </div>
+                <x-nav-link :href="route('admin.blog.categories.index')" :active="request()->routeIs('admin.blog.categories.*')">
+                    @include('svg.category')
+                    {{ __('Categories') }}
                 </x-nav-link>
             </nav>
         </div>
@@ -103,6 +115,18 @@
                 <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')">
                     @include('svg.users')
                     {{ __('Users') }}
+                </x-nav-link>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                      <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
+                    </div>
+                </div>
+                <x-nav-link :href="route('admin.blog.categories.index')" :active="request()->routeIs('admin.blog.categories.*')">
+                    @include('svg.category')
+                    {{ __('Categories') }}
                 </x-nav-link>
             </nav>
         </div>
