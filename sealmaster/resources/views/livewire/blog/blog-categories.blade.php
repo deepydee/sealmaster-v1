@@ -12,15 +12,33 @@
                         {{ __('Add') }}
                     </x-primary-button>
 
+                    <button type="button"
+                    {{-- wire:click="deleteConfirm('deleteSelected')"
+                    wire:loading.attr="disabled"
+                    @disabled(! $this->selectedCount) --}}
+                    class="px-4 py-2 text-xs text-red-500 uppercase bg-red-200 rounded-md border border-transparent hover:text-red-700 hover:bg-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                        {{ __('Delete Selected') }}
+                    </button>
+
                     <div class="overflow-hidden overflow-x-auto mb-4 min-w-full align-middle sm:rounded-md">
                         <table class="min-w-full border divide-y divide-gray-200">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left bg-gray-50">
+                                    <th wire:click="sortByColumn('blog_categories.title')" class="px-6 py-3 text-left bg-gray-50">
                                         <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{ __('Name') }}</span>
+                                        @if ($sortColumn == 'blog_categories.title')
+                                            @include('svg.sort-' . $sortDirection)
+                                        @else
+                                            @include('svg.sort')
+                                        @endif
                                     </th>
-                                    <th class="px-6 py-3 text-left bg-gray-50">
+                                    <th wire:click="sortByColumn('blog_categories.slug')" class="px-6 py-3 text-left bg-gray-50">
                                         <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{ __('Slug') }}</span>
+                                        @if ($sortColumn == 'blog_categories.slug')
+                                            @include('svg.sort-' . $sortDirection)
+                                        @else
+                                            @include('svg.sort')
+                                        @endif
                                     </th>
                                     <th class="px-6 py-3 text-left bg-gray-50 w-56">
                                     </th>

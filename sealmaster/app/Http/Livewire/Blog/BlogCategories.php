@@ -15,10 +15,21 @@ class BlogCategories extends Component
 
     public Category $category;
     public Collection $categories;
+    public array $selected = [];
+    public string $sortColumn = 'blog_categories.title';
+    public string $sortDirection = 'asc';
     public bool $showModal = false;
     public int $editedCategoryId = 0;
     public int $currentPage = 1;
     public int $perPage = 10;
+
+    public array $itemsToShow = [
+        10,
+        50,
+        100,
+        500,
+        1000,
+    ];
 
     protected $listeners = ['delete'];
 
@@ -40,6 +51,23 @@ class BlogCategories extends Component
     {
         $this->validateOnly('category.title');
         $this->category->slug = SlugService::createSlug(Category::class, 'slug',  $this->category->title);
+    }
+
+    public function updatedPerPage()
+    {
+        $this->resetPage();
+    }
+
+    public function sortByColumn($column): void
+    {
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc'
+                ? 'desc'
+                : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
     }
 
     public function editCategory(Category $category): void
@@ -81,13 +109,16 @@ class BlogCategories extends Component
 
     public function render(): View
     {
-        $cats = Category::paginate($this->perPage);
+        $cats = Category::orderBy($this->sortColumn, $this->sortDirection)
+            ->paginate($this->perPage);
+
         $links = $cats->links();
         $this->currentPage = $cats->currentPage();
         $this->categories = collect($cats->items());
 
         return view('livewire.blog.blog-categories', [
             'links' => $links,
+            'categories' => $cats,
         ]);
     }
 }
