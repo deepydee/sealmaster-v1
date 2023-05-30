@@ -7,8 +7,9 @@ use App\Models\BlogCategory as Category;
 use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Contracts\View\View;
 
-class BlogCategory extends Component
+class BlogCategories extends Component
 {
     use WithPagination;
 
@@ -78,14 +79,14 @@ class BlogCategory extends Component
         $category->delete();
     }
 
-    public function render()
+    public function render(): View
     {
-        $cats = Category::orderBy('position')->paginate($this->perPage);
+        $cats = Category::paginate($this->perPage);
         $links = $cats->links();
         $this->currentPage = $cats->currentPage();
         $this->categories = collect($cats->items());
 
-        return view('livewire.blog.blog-category', [
+        return view('livewire.blog.blog-categories', [
             'links' => $links,
         ]);
     }

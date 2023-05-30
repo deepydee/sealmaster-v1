@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Blog\BlogCategory;
+use App\Http\Livewire\Blog\BlogCategories;
+use App\Http\Livewire\Blog\BlogTags;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('blog')->name('admin.blog.')->group(function () {
-        Route::get('categories', BlogCategory::class)->name('categories.index');
+        Route::get('categories', BlogCategories::class)->name('categories.index');
+        Route::get('tags', BlogTags::class)->name('tags.index');
     });
 
 });

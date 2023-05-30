@@ -72,5 +72,13 @@
     "Change your profile photo": "Измените Ваш аватар",
     "Photo": "Фото",
     "Blog": "Блог",
-    "Categories": "Категории"
+    "Categories": "Категории",
+    "Tags": "Теги",
+    "Add": "Добавить",
+    "Slug": "Слаг",
+    "Remove": "Удалить",
+    "Create": "Создать",
+    "Edit": "Редактировать",
+    "Create category": "Создать категорию",
+    "Create tag": "Создать тег"
 }
