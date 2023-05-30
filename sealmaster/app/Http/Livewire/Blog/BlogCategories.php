@@ -31,7 +31,7 @@ class BlogCategories extends Component
         1000,
     ];
 
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'deleteSelected'];
 
     protected function rules(): array
     {
@@ -56,6 +56,11 @@ class BlogCategories extends Component
     public function updatedPerPage()
     {
         $this->resetPage();
+    }
+
+    public function getSelectedCountProperty(): int
+    {
+        return count($this->selected);
     }
 
     public function sortByColumn($column): void
@@ -86,10 +91,17 @@ class BlogCategories extends Component
     {
         $this->validate();
 
+        $message = $this->editedCategoryId === 0
+            ? 'создана'
+            : 'отредактирована';
+
         $this->category->save();
 
         $this->resetValidation();
         $this->reset('showModal', 'editedCategoryId');
+
+
+        session()->flash('message', 'Категория успешно ' . $message);
     }
     public function deleteConfirm($method, $id = null)
     {
@@ -105,6 +117,18 @@ class BlogCategories extends Component
     public function delete(Category $category)
     {
         $category->delete();
+
+        session()->flash('message', 'Категория успешно удалена');
+    }
+
+    public function deleteSelected(): void
+    {
+        $categories = Category::whereIn('id', $this->selected)->get();
+        $categories->each->delete();
+
+        session()->flash('message', 'Категория успешно удалена');
+
+        $this->reset('selected');
     }
 
     public function render(): View
