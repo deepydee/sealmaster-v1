@@ -47,8 +47,10 @@
             </main>
         </div>
     </div>
+
     @livewireScripts
     @stack('js')
+    <x-notification />
 </body>
 
 </html>

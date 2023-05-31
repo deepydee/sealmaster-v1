@@ -16,8 +16,8 @@ class BlogCategories extends Component
     public Category $category;
     public Collection $categories;
     public array $selected = [];
-    public string $sortColumn = 'blog_categories.title';
-    public string $sortDirection = 'asc';
+    public string $sortColumn = 'blog_categories.created_at';
+    public string $sortDirection = 'desc';
     public bool $showModal = false;
     public int $editedCategoryId = 0;
     public int $currentPage = 1;
@@ -91,9 +91,10 @@ class BlogCategories extends Component
     {
         $this->validate();
 
-        $message = $this->editedCategoryId === 0
+        $action = $this->editedCategoryId === 0
             ? 'создана'
             : 'отредактирована';
+        $message = "Категория '{$this->category->title}' успешно $action";
 
         $this->category->save();
 
@@ -101,7 +102,7 @@ class BlogCategories extends Component
         $this->reset('showModal', 'editedCategoryId');
 
 
-        session()->flash('message', 'Категория успешно ' . $message);
+        $this->dispatchBrowserEvent('notify', $message);
     }
     public function deleteConfirm($method, $id = null)
     {
@@ -116,17 +117,20 @@ class BlogCategories extends Component
 
     public function delete(Category $category)
     {
+        $message = "Категория '{$category->title}' успешно удалена";
         $category->delete();
 
-        session()->flash('message', 'Категория успешно удалена');
+        $this->dispatchBrowserEvent('notify', $message);
     }
 
     public function deleteSelected(): void
     {
         $categories = Category::whereIn('id', $this->selected)->get();
+        $catCount = count($categories);
         $categories->each->delete();
+        $message = "$catCount категорий успешно удалено";
 
-        session()->flash('message', 'Категория успешно удалена');
+        $this->dispatchBrowserEvent('notify', $message);
 
         $this->reset('selected');
     }
