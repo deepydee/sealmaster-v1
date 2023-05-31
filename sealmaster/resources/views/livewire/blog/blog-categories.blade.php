@@ -1,7 +1,7 @@
 <div>
     <x-slot:header>
         <h1 class="text-2xl font-semibold text-gray-900">{{ __('Categories') }}</h1>
-        </x-slot>
+    </x-slot>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">

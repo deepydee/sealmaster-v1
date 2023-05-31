@@ -17,69 +17,105 @@
                         {{ __('Add') }}
                     </x-primary-button>
 
-                    <div class="overflow-hidden overflow-x-auto mb-4 min-w-full align-middle sm:rounded-md">
-                        <table class="min-w-full border divide-y divide-gray-200">
-                            <thead>
-                                <tr>
-                                    <th class="px-6 py-3 text-left bg-gray-50">
-                                        <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase"> {{ __('Name') }}</span>
-                                    </th>
-                                    <th class="px-6 py-3 text-left bg-gray-50">
-                                        <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase"> {{ __('Slug') }}</span>
-                                    </th>
-                                    <th class="px-6 py-3 text-left bg-gray-50 w-56">
-                                    </th>
-                                </tr>
-                            </thead>
+                    <x-remove-button :disabled="!$this->selectedCount" wire:click="deleteConfirm('deleteSelected')"
+                        wire:loading.attr="disabled">
+                        {{ __('Delete Selected') }}
+                    </x-remove-button>
 
-                            <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                                @foreach($tags as $tag)
-                                    <tr class="bg-white">
-                                        {{-- Inline Edit Start --}}
-                                        <td class="@if($editedTagId !== $tag->id) hidden @endif px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            <x-text-input wire:model="tag.title" id="tag.title" class="py-2 pr-4 pl-2 w-full text-sm rounded-lg border border-gray-400 sm:text-base focus:outline-none focus:border-blue-400" />
-                                            @error('tag.title')
-                                                <span class="text-sm text-red-500">{{ $message }}</span>
-                                            @enderror
-                                        </td>
-                                        <td class="@if($editedTagId !== $tag->id) hidden @endif px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            <x-text-input wire:model="tag.slug" id="tag.slug" class="py-2 pr-4 pl-2 w-full text-sm rounded-lg border border-gray-400 sm:text-base focus:outline-none focus:border-blue-400" />
-                                            @error('tag.slug')
-                                                <span class="text-sm text-red-500">{{ $message }}</span>
-                                            @enderror
-                                        </td>
-                                        {{-- Inline Edit End --}}
-
-                                        {{-- Show Tag Name/Slug Start --}}
-                                        <td class="@if($editedTagId === $tag->id) hidden @endif px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $tag->title }}
-                                        </td>
-                                        <td class="@if($editedTagId === $tag->id) hidden @endif px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $tag->slug }}
-                                        </td>
-                                        {{-- Show Tag Name/Slug End --}}
-                                        <td class="flex items-center justify-end px-4 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            @if($editedTagId === $tag->id)
-                                                <x-primary-button wire:click="save" class="mr-2">
-                                                    {{ __('Save') }}
-                                                </x-primary-button>
-                                                <x-primary-button wire:click.prevent="cancelTagEdit" id="cancel-{{ $loop->index }}">
-                                                    {{ __('Cancel') }}
-                                                </x-primary-button>
-                                            @else
-                                            <span wire:click="editTag({{ $tag->id }})" class="mr-2" title=" {{ __('Edit') }}">
-                                                @include('svg.btn-edit')
-                                            </span>
-                                            <span wire:click="deleteConfirm('delete', {{ $tag->id }})" title=" {{ __('Remove') }}">
-                                                @include('svg.btn-trash')
-                                            </span>
-                                            @endif
-                                        </td>
-                                    </tr>
+                    <x-table>
+                        <x-slot:heading>
+                            <x-table.heading>
+                                <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                            </x-table.heading>
+                            <x-table.heading wire:click="sortByColumn('blog_tags.title')">
+                                <span
+                                    class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                    __('Name') }}</span>
+                                @if ($sortColumn == 'blog_tags.title')
+                                @include('svg.sort-' . $sortDirection)
+                                @else
+                                @include('svg.sort')
+                                @endif
+                            </x-table.heading>
+                            <x-table.heading wire:click="sortByColumn('blog_tags.slug')">
+                                <span
+                                    class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                    __('Slug') }}</span>
+                                @if ($sortColumn == 'blog_tags.slug')
+                                @include('svg.sort-' . $sortDirection)
+                                @else
+                                @include('svg.sort')
+                                @endif
+                            </x-table.heading>
+                            <x-table.heading>
+                                <select wire:model="perPage"
+                                    class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @foreach($itemsToShow as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </select>
+                            </x-table.heading>
+                            </x-slot>
+
+                            @forelse($tags as $tag)
+                            <x-table.row>
+                                <x-table.cell>
+                                    <input wire:model="selected" type="checkbox" class="table-item cursor-pointer"
+                                        value="{{ $tag->id }}">
+                                </x-table.cell>
+                                {{-- Inline Edit Start --}}
+                                <x-table.cell :hidden="$editedTagId !== $tag->id">
+                                    <x-text-input wire:model="tag.title" id="tag.title"
+                                        class="py-2 pr-4 pl-2 w-full text-sm rounded-lg border border-gray-400 sm:text-base focus:outline-none focus:border-blue-400" />
+                                    @error('tag.title')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </x-table.cell>
+                                <x-table.cell :hidden="$editedTagId !== $tag->id">
+                                    <x-text-input wire:model="tag.slug" id="tag.slug"
+                                        class="py-2 pr-4 pl-2 w-full text-sm rounded-lg border border-gray-400 sm:text-base focus:outline-none focus:border-blue-400" />
+                                    @error('tag.slug')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </x-table.cell>
+                                {{-- Inline Edit End --}}
+                                {{-- Show tag Name/Slug Start --}}
+                                <x-table.cell :hidden="$editedTagId === $tag->id">
+                                    {{ $tag->title }}
+                                </x-table.cell>
+                                <x-table.cell :hidden="$editedTagId === $tag->id">
+                                    {{ $tag->slug }}
+                                </x-table.cell>
+                                {{-- Show tag Name/Slug End --}}
+                                <x-table.cell>
+                                    @if($editedTagId === $tag->id)
+                                    <x-primary-button wire:click="save" class="mr-2">
+                                        {{ __('Save') }}
+                                    </x-primary-button>
+                                    <x-primary-button wire:click.prevent="cancelTagEdit"
+                                        id="cancel-{{ $loop->index }}">
+                                        {{ __('Cancel') }}
+                                    </x-primary-button>
+                                    @else
+                                    <span wire:click="editTag({{ $tag->id }})" class="mr-2"
+                                        title="{{ __('Edit') }}">
+                                        @include('svg.btn-edit')
+                                    </span>
+                                    <span wire:click="deleteConfirm('delete', {{ $tag->id }})"
+                                        title="{{ __('Remove') }}">
+                                        @include('svg.btn-trash')
+                                    </span>
+                                    @endif
+                                </x-table.cell>
+                            </x-table.row>
+                            @empty
+                            <x-table.row>
+                                <x-table.cell colspan="4" class="grow">
+                                    Нет тегов
+                                </x-table.cell>
+                            </x-table.row>
+                            @endforelse
+                    </x-table>
                     {!! $links !!}
                 </div>
             </div>
