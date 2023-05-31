@@ -81,5 +81,9 @@
     "Edit": "Редактировать",
     "Create category": "Создать категорию",
     "Create tag": "Создать тег",
-    "Delete Selected": "Удалить выделенные"
+    "Delete Selected": "Удалить выделенные",
+    "Posts": "Статьи",
+    "Items": "Элементов",
+    "Active": "Опубликовано",
+    "Category": "Категория"
 }

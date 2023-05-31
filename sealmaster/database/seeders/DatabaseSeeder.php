@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             BlogCategorySeeder::class,
-            BlogTagSeeder::class,
+            BlogPostSeeder::class,
         ]);
     }
 }

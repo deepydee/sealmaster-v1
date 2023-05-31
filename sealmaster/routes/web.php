@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Blog\BlogCategories;
 use App\Http\Livewire\Blog\BlogTags;
+use App\Http\Livewire\Blog\BlogPosts;
+use App\Http\Livewire\Blog\PostForm;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +32,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::prefix('blog')->name('admin.blog.')->group(function () {
         Route::get('categories', BlogCategories::class)->name('categories.index');
         Route::get('tags', BlogTags::class)->name('tags.index');
+        Route::get('posts', BlogPosts::class)->name('posts.index');
+        Route::get('posts/create', PostForm::class)->name('posts.create');
+        Route::get('posts/{post}', PostForm::class)->name('posts.edit');
     });
 
 });
