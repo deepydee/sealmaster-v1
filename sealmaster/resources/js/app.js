@@ -2,7 +2,9 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
+import Choices from 'choices.js';
 
+window.Choices = Choices;
 window.Alpine = Alpine;
 
 Alpine.start();

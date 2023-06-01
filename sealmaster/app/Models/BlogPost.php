@@ -7,10 +7,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class BlogPost extends Model
+class BlogPost extends Model implements HasMedia
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, InteractsWithMedia;
     protected $fillable = [
         'title',
         'slug',
@@ -50,6 +54,24 @@ class BlogPost extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(BlogTag::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('blog')
+             ->withResponsiveImages()
+             ->useFallbackUrl(asset('storage/img/img/placeholder-image.jpg'))
+             ->useFallbackUrl(asset('storage/img/placeholder-image.jpg'), 'thumb')
+             ->useFallbackPath(asset('storage/img/placeholder-image.jpg'))
+             ->useFallbackPath(asset('storage/img/placeholder-image.jpg'), 'thumb');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('thumb')
+            ->fit(Manipulations::FIT_CROP, 96, 96)
+            ->nonQueued();
     }
 
     public function sluggable(): array

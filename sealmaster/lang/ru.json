@@ -84,6 +84,16 @@
     "Delete Selected": "Удалить выделенные",
     "Posts": "Статьи",
     "Items": "Элементов",
-    "Active": "Опубликовано",
-    "Category": "Категория"
+    "Active": "Онлайн",
+    "Date": "Дата",
+    "Category": "Категория",
+    "Choose category": "Выберите категорию",
+    "Select tags": "Выберите теги",
+    "Create post": "Создать статью",
+    "Edit post": "Редактировать статью",
+    "Title": "Заголовок",
+    "Description": "Описание",
+    "Thumbnail": "Обложка",
+    "Author": "Автор",
+    "Choose author": "Выберите автора"
 }

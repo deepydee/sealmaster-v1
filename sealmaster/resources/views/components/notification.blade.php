@@ -1,7 +1,3 @@
-<style>
-    [x-cloak] { display: none }
-</style>
-
 <div x-data="{ openToast: false, message: '' }"
     x-on:notify.window="openToast = true; message = $event.detail; setTimeout(() => openToast = false, 2000)"
     aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">

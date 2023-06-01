@@ -132,7 +132,7 @@ class BlogPosts extends Component
         //     ->join('blog_categories', 'blog_categories.id', '=', 'blog_posts.blog_category_id')
         //     ->with('category', 'tags');
 
-        $posts = Post::with('category', 'tags'); //->orderBy($this->sortColumn, $this->sortDirection);
+        $posts = Post::with('category', 'tags', 'user', 'media'); //->orderBy($this->sortColumn, $this->sortDirection);
 
         foreach ($this->searchColumns as $column => $value) {
             if (!empty($value)) {

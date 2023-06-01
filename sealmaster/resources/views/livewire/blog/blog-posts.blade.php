@@ -36,6 +36,17 @@
                                         @include('svg.sort')
                                     @endif
                                 </x-table.heading>
+                                <x-table.heading wire:click="sortByColumn('user_id')">
+                                    <span
+                                        class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                        __('Author') }}
+                                    </span>
+                                    @if ($sortColumn == 'user_id')
+                                        @include('svg.sort-' . $sortDirection)
+                                    @else
+                                        @include('svg.sort')
+                                    @endif
+                                </x-table.heading>
                                 <x-table.heading wire:click="sortByColumn('categoryTitle')">
                                     <span
                                         class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
@@ -86,6 +97,7 @@
                                     <input wire:model="searchColumns.title" type="text" placeholder="Поиск..."
                                         class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                                 </x-table.cell>
+                                <x-table.cell></x-table.cell>
                                 <x-table.cell>
                                     <select wire:model="searchColumns.blog_category_id"
                                         class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -106,6 +118,7 @@
                                 </x-table.cell>
 
                                 <x-table.cell></x-table.cell>
+                                <x-table.cell></x-table.cell>
 
                                 <x-table.cell>
                                     <select wire:model="perPage"
@@ -125,6 +138,9 @@
                                     </x-table.cell>
                                     <x-table.cell>
                                         {{ $post->title }}
+                                    </x-table.cell>
+                                    <x-table.cell>
+                                        {{ $post->user->name }}
                                     </x-table.cell>
                                     <x-table.cell>
                                         {{ $post->category->title }}
