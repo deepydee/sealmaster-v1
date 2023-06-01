@@ -24,6 +24,7 @@ class BlogPost extends Model
 
     protected $casts = [
         'keywords' => 'array',
+        'updated_at' => 'date:d.m.Y',
     ];
 
     protected function keywords(): Attribute

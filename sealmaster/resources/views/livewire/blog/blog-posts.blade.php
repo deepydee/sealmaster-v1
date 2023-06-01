@@ -1,7 +1,7 @@
 <div>
     <x-slot:header>
         <h1 class="text-2xl font-semibold text-gray-900">{{ __('Posts') }}</h1>
-        </x-slot>
+    </x-slot>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -31,9 +31,9 @@
                                         __('Name') }}
                                     </span>
                                     @if ($sortColumn == 'blog_posts.title')
-                                    @include('svg.sort-' . $sortDirection)
+                                        @include('svg.sort-' . $sortDirection)
                                     @else
-                                    @include('svg.sort')
+                                        @include('svg.sort')
                                     @endif
                                 </x-table.heading>
                                 <x-table.heading wire:click="sortByColumn('categoryTitle')">
@@ -42,9 +42,9 @@
                                         __('Category') }}
                                     </span>
                                     @if ($sortColumn == 'categoryTitle')
-                                    @include('svg.sort-' . $sortDirection)
+                                        @include('svg.sort-' . $sortDirection)
                                     @else
-                                    @include('svg.sort')
+                                        @include('svg.sort')
                                     @endif
                                 </x-table.heading>
                                 <x-table.heading>
@@ -52,6 +52,17 @@
                                         class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
                                         __('Tags') }}
                                     </span>
+                                </x-table.heading>
+                                <x-table.heading wire:click="sortByColumn('updated_at')">
+                                    <span
+                                    class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                    __('Date') }}
+                                    </span>
+                                    @if ($sortColumn == 'updated_at')
+                                        @include('svg.sort-' . $sortDirection)
+                                    @else
+                                        @include('svg.sort')
+                                    @endif
                                 </x-table.heading>
                                 <x-table.heading>
                                     <span
@@ -127,6 +138,10 @@
                                     </x-table.cell>
 
                                     <x-table.cell>
+                                        {{ $post->updated_at->format('d.m.Y') }}
+                                    </x-table.cell>
+
+                                    <x-table.cell>
                                         <div
                                             class="inline-block relative mr-2 w-10 align-middle transition duration-200 ease-in select-none">
                                             <input wire:model="active.{{ $post->id }}"
@@ -139,10 +154,9 @@
                                     </x-table.cell>
 
                                     <x-table.cell>
-                                        <span wire:click="editTag({{ $post->id }})" class="mr-2"
-                                            title="{{ __('Edit') }}">
+                                        <a href="{{ route('admin.blog.posts.edit', $post) }}" title="{{ __('Edit') }}">
                                             @include('svg.btn-edit')
-                                        </span>
+                                        </a>
                                         <span wire:click="deleteConfirm('delete', {{ $post->id }})"
                                             title="{{ __('Remove') }}">
                                             @include('svg.btn-trash')

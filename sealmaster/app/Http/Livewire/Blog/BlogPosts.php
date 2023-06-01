@@ -127,6 +127,11 @@ class BlogPosts extends Component
 
     public function render(): View
     {
+        // $posts = Post::query()
+        //     ->select(['blog_posts.*', 'blog_categories.id as categoryId', 'blog_categories.title as categoryTitle',])
+        //     ->join('blog_categories', 'blog_categories.id', '=', 'blog_posts.blog_category_id')
+        //     ->with('category', 'tags');
+
         $posts = Post::with('category', 'tags'); //->orderBy($this->sortColumn, $this->sortDirection);
 
         foreach ($this->searchColumns as $column => $value) {
