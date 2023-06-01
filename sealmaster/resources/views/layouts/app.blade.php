@@ -48,7 +48,7 @@
             </main>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('storage/js/ckeditor5/build/ckeditor.js') }}"></script>
     @livewireScripts
     @stack('js')
     <x-notification />
