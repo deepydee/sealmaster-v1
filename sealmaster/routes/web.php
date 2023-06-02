@@ -20,8 +20,14 @@ use App\Http\Livewire\Blog\PostForm;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'index')->name('home');
+
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/', [BlogPostController::class, 'index'])->name('index');
+    Route::get('article/{blog_post:slug}', [BlogPostController::class, 'show'])->name('page');
+    Route::get('category/{blog_category:slug}', [BlogCategoryController::class, 'show'])->name('category');
+    Route::get('tag/{blog_tag:slug}', [BlogTagController::class, 'show'])->name('tag');
+    Route::get('search', [BlogSearchController::class, 'index'])->name('search');
 });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
