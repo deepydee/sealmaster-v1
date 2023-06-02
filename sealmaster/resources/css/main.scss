@@ -57,6 +57,8 @@
 :root {
   --text-dark: hsla(217, 33%, 17%, 1);
   --body-color: rgb(80, 90, 104);
+  --bs-breadcrumb-divider: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E");
+
 }
 
 body {
@@ -87,6 +89,11 @@ body {
   .breadcrumb-container {
     background-color: var(--bs-light);
   }
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: var(--body-color);
 }
 
 .brand-logo {
@@ -1000,4 +1007,75 @@ body {
     color: #000000;
     border: 1px solid #ccc;
     font-size: 11px;
+}
+
+.post-entry {
+    position: relative;
+    z-index: 3;
+}
+
+.site-cover, .site-cover .same-height {
+    padding: 7em 0;
+}
+
+.site-cover {
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+}
+
+.site-cover.overlay:after {
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.site-cover, .site-cover .same-height {
+    padding: 7em 0;
+}
+
+.post-category {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    letter-spacing: .2em;
+    font-weight: 700;
+    font-size: .6rem;
+    text-transform: uppercase;
+}
+
+.site-cover.single-page h1 {
+    font-size: 2rem;
+    color: #fff;
+
+    @media (min-width: 992px) {
+        font-size: 5rem;
+    }
+}
+
+.site-cover.single-page h1 a {
+    color: #fff;
+}
+
+.site-cover .post-entry .post-meta {
+    color: #fff;
+    font-size: 13px;
+}
+
+.post-meta {
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+.site-cover .post-entry .post-meta .author-figure img {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.mr-3 {
+    margin-right: 1rem!important;
 }
