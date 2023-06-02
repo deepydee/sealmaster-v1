@@ -436,6 +436,10 @@ body {
     transition: all .4s ease-in-out;
   }
 
+  .author {
+    width: 25px;
+  }
+
   a {
     text-decoration: none;
     color: var(--body-color);
@@ -757,6 +761,9 @@ body {
 
 .post-image {
   border: 8px solid hsl(223, 90%, 92%);
+  width: 216px;
+  height: 216px;
+  object-fit: cover;
 }
 
 .categories-list .list-group-item {

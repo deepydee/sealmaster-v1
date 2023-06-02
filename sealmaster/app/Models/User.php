@@ -50,10 +50,10 @@ class User extends Authenticatable implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatars')
-             ->useFallbackUrl(asset('storage/img/avatar.svg'))
-             ->useFallbackUrl(asset('storage/img/avatar.svg'), 'thumb')
-             ->useFallbackPath(asset('storage/img/avatar.svg'))
-             ->useFallbackPath(asset('storage/img/avatar.svg'), 'thumb');
+             ->useFallbackUrl(asset('storage/img/avatar.png'))
+             ->useFallbackUrl(asset('storage/img/avatar.png'), 'thumb')
+             ->useFallbackPath(asset('storage/img/avatar.png'))
+             ->useFallbackPath(asset('storage/img/avatar.png'), 'thumb');
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -61,6 +61,10 @@ class User extends Authenticatable implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 36, 36)
+            ->nonQueued();
+        $this
+            ->addMediaConversion('thumb_post')
+            ->fit(Manipulations::FIT_CROP, 216, 216)
             ->nonQueued();
     }
 }

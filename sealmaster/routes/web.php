@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogTagController;
+use App\Http\Controllers\BlogSearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Blog\BlogCategories;

@@ -152,7 +152,7 @@
                                 </x-table.cell>
 
                                 <x-table.cell>
-                                    {{ $post->updated_at->format('d.m.Y') }}
+                                    {{ $post->updated_at }}
                                 </x-table.cell>
 
                                 <x-table.cell>

@@ -7,10 +7,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Date;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class BlogPost extends Model implements HasMedia
 {
@@ -31,13 +34,17 @@ class BlogPost extends Model implements HasMedia
         'updated_at' => 'date:d.m.Y',
     ];
 
-    protected function keywords(): Attribute
+    protected function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn (string $val) => join(', ', $this->castAttribute('keywords', $val)),
-            set: fn (string $val) =>
-                '['.(join(',', array_map(fn ($e) =>
-                    '"'.trim($e).'"', explode(',', $val)) ).']'),
+            get: fn (string $date) => Date::parse($date)->format('j F Y'),
+        );
+    }
+
+    protected function updatedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $date) => Date::parse($date)->format('j F Y'),
         );
     }
 
@@ -73,6 +80,22 @@ class BlogPost extends Model implements HasMedia
             ->fit(Manipulations::FIT_CROP, 96, 96)
             ->nonQueued();
     }
+
+    public function scopeSearch(Builder $query, $q)
+    {
+        return $query->where('title', 'LIKE', "%{$q}%");
+            // ->orWhereFullText('content', $q);
+    }
+
+    // public function getHumanReadableCreatedAt()
+    // {
+
+    // }
+
+    // public function getHumanReadableUpdatedAt()
+    // {
+    //     # code...
+    // }
 
     public function sluggable(): array
     {
