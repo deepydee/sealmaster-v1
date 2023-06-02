@@ -430,6 +430,7 @@ body {
 .blog-card {
   overflow: hidden;
   height: 100%;
+  border: none;
 
   img {
     background: #000;
@@ -448,6 +449,16 @@ body {
       text-decoration: underline;
     }
   }
+}
+
+.card-body {
+    flex: 0 1 auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card-footer {
+    background-color: transparent;
 }
 
 .card-brand {
@@ -802,7 +813,7 @@ body {
   max-height: 150px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+//   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -929,4 +940,64 @@ body {
         top: 0;
         left: 100%;
     }
+}
+
+.sidebar-box {
+    margin-bottom: 40px;
+    padding: 0 25px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.sidebar-box .heading {
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.categories {
+    padding: 0;
+}
+
+.categories li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+    list-style: none;
+}
+
+.categories li a {
+    display: block;
+    color: #000000;
+}
+
+.categories li a span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ccc;
+}
+
+.sidebar-box h3.sidebar-heading {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.tagcloud {
+    padding: 0;
+}
+
+.tagcloud a {
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 4px 10px;
+    margin-bottom: 7px;
+    margin-right: 4px;
+    border-radius: 4px;
+    color: #000000;
+    border: 1px solid #ccc;
+    font-size: 11px;
 }

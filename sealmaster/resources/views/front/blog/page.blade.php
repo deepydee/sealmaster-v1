@@ -42,10 +42,11 @@
         <div class="col-12 col-lg-8 ck-content">
             <p>{!! $blogPost->description !!}</p>
             {!! $blogPost->content !!}
-          <div class="tags mb-4">
+          <div class="tags mb-4 mt-5">
             @if ($blogPost->tags->count())
+            <h3>Теги:</h3>
                 @foreach ($blogPost->tags as $tag)
-                    <a href="{{ route('blog.tag', $tag) }}" class="no-underline"><span class="badge text-bg-light">{{ $tag->title }}</span></a>
+                    <a href="{{ route('blog.tag', $tag) }}" class="no-underline"><span class="badge text-bg-light">#{{ $tag->title }}</span></a>
                 @endforeach
             @endif
           </div>

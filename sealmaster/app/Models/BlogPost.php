@@ -79,6 +79,10 @@ class BlogPost extends Model implements HasMedia
             ->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 96, 96)
             ->nonQueued();
+        $this
+            ->addMediaConversion('thumb_card')
+            ->fit(Manipulations::FIT_CROP, 334, 334)
+            ->nonQueued();
     }
 
     public function scopeSearch(Builder $query, $q)

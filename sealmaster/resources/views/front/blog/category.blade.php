@@ -17,13 +17,13 @@
         </ol>
     </nav>
 
-    <p class="mb-5">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Имеет он ведущими путь продолжил, собрал жизни домах приставка над проектах возвращайся своего текстов даже! Послушавшись даже злых заманивший. Вопроса.</p>
+    <p class="mb-5"></p>
     <div class="row mb-5">
       <div class="col-md-9 mb-5">
         <div class="row g-4">
 
             @foreach ($posts as $post)
-            <div class="col-md-6">
+            <div class="col-sm-6 col-lg-4">
                 @include('front.post-card', ['post' => $post])
             </div>
             @endforeach

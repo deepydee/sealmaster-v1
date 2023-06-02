@@ -79,11 +79,11 @@
         @include('front.section-partners')
     </section>
 
-    {{-- <section class="container blog mb-4 mb-sm-5">
+    <section class="container blog mb-4 mb-sm-5">
       <h2 class="display-6 fw-bold mb-4">Блог</h2>
-      @include('front.layouts.chunks.popular-posts')
+      @include('front.popular-posts')
       <a href="{{ route('blog.index') }}">Все записи</a>
-    </section> --}}
+    </section>
 
     <section class="container faq mb-3 mb-sm-5" itemscope itemtype="https://schema.org/FAQPage">
       <div class="row">

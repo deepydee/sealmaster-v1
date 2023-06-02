@@ -11,7 +11,7 @@ class BlogPostController extends Controller
         $posts = BlogPost::with(['media', 'category', 'tags', 'user'])
             ->where('is_published', 1)
             ->latest()
-            ->paginate(4);
+            ->paginate(6);
 
         return view('front.blog.index', compact('posts'));
     }

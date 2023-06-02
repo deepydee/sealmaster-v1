@@ -15,10 +15,10 @@ class BlogCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = BlogTag::factory(25)->create();
+        $tags = BlogTag::factory(10)->create();
 
         BlogCategory::factory()
-            ->count(40)
+            ->count(10)
             ->create()
             ->each(function($category) use($tags) {
                 BlogPost::factory()

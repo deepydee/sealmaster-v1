@@ -13,7 +13,7 @@
           <div class="row g-4">
 
             @foreach ($posts as $post)
-            <div class="col-md-6">
+            <div class="col-sm-6 col-lg-4">
                 @include('front.post-card', ['post' => $post])
             </div>
             @endforeach

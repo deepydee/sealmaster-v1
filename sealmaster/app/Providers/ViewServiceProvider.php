@@ -41,7 +41,7 @@ class ViewServiceProvider extends ServiceProvider
         {
             $popularPosts = BlogPost::orderBy('views', 'desc')
                 ->with('media', 'category')
-                ->limit(3)
+                ->limit(4)
                 ->get();
 
             $view->with([
