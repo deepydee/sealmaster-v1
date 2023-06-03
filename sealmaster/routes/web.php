@@ -52,10 +52,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('posts/{post}', PostForm::class)->name('posts.edit');
     });
 
+    Route::prefix('categories')->name('admin.categories.')->group(function () {
+        Route::view('/', 'categories.index')->name('index');
+    });
+
 });
+
+require __DIR__.'/auth.php';
 
 Route::get('/{path}', [CategoryController::class, 'show'])
     ->where('path', '[a-zA-Z0-9/_-]+')
     ->name('category.show');
-
-require __DIR__.'/auth.php';

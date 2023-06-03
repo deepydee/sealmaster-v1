@@ -19687,6 +19687,31 @@
      
 }
 
+    namespace Spatie\MediaLibrary\MediaCollections\Models\Collections { 
+            /**
+     * 
+     *
+     * @template TKey of array-key
+     * @template TModel of \Spatie\MediaLibrary\MediaCollections\Models\Media
+     * @extends \Illuminate\Database\Eloquent\Collection<TKey, TModel>
+     */ 
+        class MediaCollection {
+         
+    }
+     
+}
+
+    namespace Kalnoy\Nestedset { 
+            /**
+     * 
+     *
+     */ 
+        class Collection {
+         
+    }
+     
+}
+
 
 namespace  { 
             class App extends \Illuminate\Support\Facades\App {}
