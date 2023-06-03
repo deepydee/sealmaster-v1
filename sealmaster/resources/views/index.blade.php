@@ -46,9 +46,9 @@
         @include('front.section-our-benefits')
     </section>
 
-    {{-- <section class="container mb-3 mb-sm-5 repair">
+    <section class="container mb-3 mb-sm-5 repair">
         @include('front.section-repair')
-    </section> --}}
+    </section>
 
     <section class="container spare-parts mb-3 mb-sm-5">
         @include('front.section-spare')
@@ -58,9 +58,9 @@
         @include('front.section-cta')
     </section>
 
-    {{-- <section class="container goods mb-3 mb-sm-5">
+    <section class="container goods mb-3 mb-sm-5">
         @include('front.section-goods')
-    </section> --}}
+    </section>
 
     <section class="container-fluid about mb-3 mb-sm-5 text-white">
         @include('front.section-about')

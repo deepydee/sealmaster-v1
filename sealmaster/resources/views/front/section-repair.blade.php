@@ -10,7 +10,7 @@
 @foreach ($repair[0]->children as $item)
 <div class="col-sm-6 col-lg-3">
     <div class="good-card rounded">
-    <img src="{{ $item->getFirstMediaUrl('images', 'thumb') }}" alt="{{ $item->title }}">
+    <img src="{{ $item->getFirstMediaUrl('categories', 'thumb') }}" alt="{{ $item->title }}">
     <div class="overlay overlay-1">
         <a href="{{ $item->path }}"><h3>{{ $item->title }}</h3></a>
     </div>

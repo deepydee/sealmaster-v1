@@ -5,6 +5,8 @@ use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogTagController;
 use App\Http\Controllers\BlogSearchController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Blog\BlogCategories;
@@ -24,7 +26,7 @@ use App\Http\Livewire\Blog\PostForm;
 |
 */
 
-Route::view('/', 'index')->name('home');
+Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogPostController::class, 'index'])->name('index');
@@ -51,5 +53,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     });
 
 });
+
+Route::get('/{path}', [CategoryController::class, 'show'])
+    ->where('path', '[a-zA-Z0-9/_-]+')
+    ->name('category.show');
 
 require __DIR__.'/auth.php';

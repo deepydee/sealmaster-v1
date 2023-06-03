@@ -170,5 +170,5 @@
         </div>
       </div>
     </div>
-    {{-- <a href="{{ $spareParts[0]->path }}">Перейти к разделу</a> --}}
+    <a href="{{ $spareParts[0]->path }}">Перейти к разделу</a>
   </div>

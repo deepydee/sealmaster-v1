@@ -11,7 +11,7 @@
     @foreach($goods[0]->children as $good)
     <div class="col-sm-6 col-lg-3">
         <div class="good-card rounded">
-            <img src="{{ $good->getFirstMediaUrl('images', 'thumb') }}" alt="{{ $good->title }}">
+            <img src="{{ $good->getFirstMediaUrl('categories', 'thumb') }}" alt="{{ $good->title }}">
             <div class="overlay overlay-1">
             <a href="{{ $good->path }}"><h3>{{ $good->title }}</h3></a>
             </div>
