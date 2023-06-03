@@ -8,7 +8,10 @@ class BlogCategoryController extends Controller
 {
     function show (BlogCategory $blogCategory) {
 
+        // $blogCategory->load('posts');
+
         $posts = $blogCategory->posts()
+            ->with('category', 'user:id,name', 'media')
             ->latest()
             ->paginate(4);
 

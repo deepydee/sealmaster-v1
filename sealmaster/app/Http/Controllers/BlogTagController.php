@@ -9,7 +9,7 @@ class BlogTagController extends Controller
     public function show(BlogTag $blogTag) {
 
         $posts = $blogTag->posts()
-            ->with('category')
+            ->with('category', 'media', 'user:id,name')
             ->latest()
             ->paginate(4);
 

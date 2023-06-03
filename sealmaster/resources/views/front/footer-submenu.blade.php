@@ -5,7 +5,7 @@
         @else
         <h4><a href="{{ route('category.show', $category->path) }}">{{ $category->title }}</a></h4>
         <ul class="footer-links">
-            @include('front.layouts.chunks.footer-submenu', ['subcategories' => $category->children])
+            @include('front.footer-submenu', ['subcategories' => $category->children])
         </ul>
         @endif
     @endforeach

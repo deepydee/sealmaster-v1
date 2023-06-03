@@ -43,7 +43,7 @@
           </div>
 
           <div class="col-md-8">
-            {{-- @if (count($categories))
+            @if (count($categories))
                 @foreach ($categories as $category)
                     @if (@blank($category->parent))
                         @if ($category->parent)
@@ -56,7 +56,7 @@
                         @endif
                     @endif
                 @endforeach
-            @endif --}}
+            @endif
 
             <p class="fw-bold">Следите за нами в социальных сетях</p>
             <div class="social my-4 my-lg-0">

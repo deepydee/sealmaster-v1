@@ -11,7 +11,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ route('category.show', $category->path) }}" id="{{ $category->slug }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $category->title }}</a>
             <ul class="dropdown-menu" aria-labelledby="{{ $category->slug }}">
-                @include('front.layouts.chunks.submenu', ['subcategories' => $category->children])
+                @include('front.submenu', ['subcategories' => $category->children])
             </ul>
         </li>
         @endif

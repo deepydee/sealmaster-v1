@@ -8,8 +8,8 @@ class BlogPostController extends Controller
 {
     public function index()
     {
-        $posts = BlogPost::with(['media', 'category', 'tags', 'user'])
-            ->where('is_published', 1)
+        $posts = BlogPost::where('is_published', 1)
+            ->with(['media', 'category:id,title,slug', 'user:name,id'])
             ->latest()
             ->paginate(6);
 
@@ -18,8 +18,6 @@ class BlogPostController extends Controller
 
     public function show(BlogPost $blogPost)
     {
-        // $blogPost->load('user', 'category', 'media', 'tags');
-
         $blogPost->views++;
         $blogPost->update();
 

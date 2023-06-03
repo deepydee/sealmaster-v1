@@ -15,7 +15,7 @@
             <li class="nav-item">
               <a class="nav-link active" href="{{ route('home') }}" aria-current="page">Главная <span class="visually-hidden">(текущая)</span></a>
             </li>
-            {{-- @include('front.dynamic-menu') --}}
+            @include('front.dynamic-menu')
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="goods" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Контакты</a>

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\BlogTag;
+use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
@@ -24,25 +25,46 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Facades\View::composer('front.sidebar', function (View $view) {
-            $categories = BlogCategory::withCount('posts')
-                ->orderBy('posts_count', 'desc')
-                ->get();
+        $categories = Category::defaultOrder()
+            ->with('children', 'parent')
+            ->get()
+            ->toTree();
 
-            $tags = BlogTag::all();
+        Facades\View::composer(
+            ['front.dynamic-menu', 'front.footer'],
+            function (View $view) use ($categories) {
+
+                $view->with([
+                    'categories' => $categories,
+                ]);
+        });
+
+        $blogCategories = BlogCategory::select('title', 'slug')
+            ->withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->get();
+
+        $blogTags = BlogTag::all();
+
+        Facades\View::composer(
+            'front.sidebar',
+            function (View $view) use ($blogCategories, $blogTags) {
+
 
             $view->with([
-                'categories' => $categories,
-                'tags' =>  $tags,
+                'categories' => $blogCategories,
+                'tags' =>  $blogTags,
             ]);
         });
 
-        Facades\View::composer('front.popular-posts', function (View $view)
-        {
-            $popularPosts = BlogPost::orderBy('views', 'desc')
-                ->with('media', 'category')
-                ->limit(4)
-                ->get();
+        $popularPosts = BlogPost::orderBy('views', 'desc')
+            ->with('media', 'category:id,slug,title', 'user:id,name')
+            ->limit(4)
+            ->get();
+
+        Facades\View::composer(
+            'front.popular-posts',
+            function (View $view) use ($popularPosts) {
 
             $view->with([
                 'popularPosts' => $popularPosts,
