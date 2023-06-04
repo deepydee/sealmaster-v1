@@ -74,10 +74,10 @@ class Category extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('categories')
-             ->useFallbackUrl(asset('storage/img/img/placeholder-image.jpg'))
-             ->useFallbackUrl(asset('storage/img/img/placeholder-image.jpg'), 'thumb')
-             ->useFallbackPath(asset('storage/img/img/placeholder-image.jpg'))
-             ->useFallbackPath(asset('storage/img/img/placeholder-image.jpg'), 'thumb');
+             ->useFallbackUrl(asset('storage/img/placeholder-image.jpg'))
+             ->useFallbackUrl(asset('storage/img/placeholder-image.jpg'), 'thumb')
+             ->useFallbackPath(asset('storage/img/placeholder-image.jpg'))
+             ->useFallbackPath(asset('storage/img/placeholder-image.jpg'), 'thumb');
     }
 
     public function registerMediaConversions(Media $media = null): void

@@ -95,5 +95,10 @@
     "Description": "Описание",
     "Thumbnail": "Обложка",
     "Author": "Автор",
-    "Choose author": "Выберите автора"
+    "Choose author": "Выберите автора",
+    "Catalog": "Каталог",
+    "Choose parent category": "Выберите родительскую категорию",
+    "Keywords": "Ключевые слова",
+    "Content": "Контент",
+    "Edit category": "Редактировать категорию"
 }

@@ -21,6 +21,7 @@ window.addEventListener('swal:confirm', event => {
     })
         .then((willDelete) => {
             if (willDelete.isConfirmed) {
+                // console.log(event.detail.method, event.detail.id);
                 window.livewire.emit(event.detail.method, event.detail.id);
             }
         });

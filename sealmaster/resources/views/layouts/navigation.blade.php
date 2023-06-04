@@ -70,6 +70,18 @@
                     @include('svg.post')
                     {{ __('Posts') }}
                 </x-nav-link>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                      <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
+                    </div>
+                </div>
+                <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
+                    @include('svg.category')
+                    {{ __('Categories') }}
+                </x-nav-link>
             </nav>
         </div>
         <div class="flex-shrink-0 flex justify-between border-t border-gray-200 p-4">
@@ -95,7 +107,6 @@
                 <x-nav-link :href="route('logout')" class="hover:text-red-700 transition-all" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     @include('svg.logout')
-                    {{ __('Log Out') }}
                 </x-nav-link>
             </form>
         </div>
@@ -144,6 +155,18 @@
                     @include('svg.post')
                     {{ __('Posts') }}
                 </x-nav-link>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                      <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
+                    </div>
+                </div>
+                <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
+                    @include('svg.category')
+                    {{ __('Categories') }}
+                </x-nav-link>
             </nav>
         </div>
         <div class="flex-shrink-0 flex justify-between border-t border-gray-200 p-4">
@@ -169,7 +192,6 @@
                 <x-nav-link :href="route('logout')" class="hover:text-red-700 transition-all" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     @include('svg.logout')
-                    {{ __('Log Out') }}
                 </x-nav-link>
             </form>
         </div>

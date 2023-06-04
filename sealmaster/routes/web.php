@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\BlogCategoryController;
@@ -13,7 +14,7 @@ use App\Http\Livewire\Blog\BlogCategories;
 use App\Http\Livewire\Blog\BlogTags;
 use App\Http\Livewire\Blog\BlogPosts;
 use App\Http\Livewire\Blog\PostForm;
-
+use App\Http\Livewire\Categories\CategoryForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +53,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('posts/{post}', PostForm::class)->name('posts.edit');
     });
 
-    Route::prefix('categories')->name('admin.categories.')->group(function () {
-        Route::view('/', 'categories.index')->name('index');
+    Route::name('admin.')->group(function () {
+        Route::get('/categories/create/{category?}', CategoryForm::class)
+            ->name('categories.create');
+        Route::resource('/categories', AdminCategoryController::class)
+            ->only('index', 'update', 'destroy');
     });
 
 });
