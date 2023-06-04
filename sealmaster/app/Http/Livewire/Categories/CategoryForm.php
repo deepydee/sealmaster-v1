@@ -16,6 +16,7 @@ class CategoryForm extends Component
     use WithFileUploads;
 
     public Category $category;
+    public $initialParentId;
     public $thumbnail;
     public bool $editing = false;
     public bool $updateThumb = false;
@@ -40,6 +41,7 @@ class CategoryForm extends Component
     public function mount(Category $category, Request $request): void
     {
         $this->category = $category;
+        $this->initialParentId = $this->category->parent_id;
         $this->initListsForFields();
 
         if ($this->category->exists && $request->addChild) {
@@ -82,7 +84,7 @@ class CategoryForm extends Component
         DB::transaction(function () {
             $this->category->save();
 
-            if ($this->category->parent_id) {
+            if ($this->category->parent_id && $this->category->parent_id !== $this->initialParentId) {
                 $parentNode = Category::find($this->category->parent_id);
                 $parentNode->appendNode($this->category);
             }
