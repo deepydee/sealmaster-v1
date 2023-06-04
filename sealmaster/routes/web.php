@@ -58,6 +58,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             ->name('categories.create');
         Route::resource('/categories', AdminCategoryController::class)
             ->only('index', 'update', 'destroy');
+
+        Route::view('/attributes', 'attributes.index')->name('attributes.index');
     });
 
 });

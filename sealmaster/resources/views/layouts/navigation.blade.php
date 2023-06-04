@@ -82,6 +82,10 @@
                     @include('svg.category')
                     {{ __('Categories') }}
                 </x-nav-link>
+                <x-nav-link :href="route('admin.attributes.index')" :active="request()->routeIs('admin.attributes.*')">
+                    @include('svg.tag')
+                    {{ __('Attributes') }}
+                </x-nav-link>
             </nav>
         </div>
         <div class="flex-shrink-0 flex justify-between border-t border-gray-200 p-4">
@@ -166,6 +170,10 @@
                 <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                     @include('svg.category')
                     {{ __('Categories') }}
+                </x-nav-link>
+                <x-nav-link :href="route('admin.attributes.index')" :active="request()->routeIs('admin.attributes.*')">
+                    @include('svg.tag')
+                    {{ __('Attributes') }}
                 </x-nav-link>
             </nav>
         </div>

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Kalnoy\Nestedset\NodeTrait;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Category extends Model implements HasMedia
 {
@@ -87,6 +87,11 @@ class Category extends Model implements HasMedia
             // ->format(Manipulations::FORMAT_WEBP)
             ->fit(Manipulations::FIT_CONTAIN, 336, 336)
             ->nonQueued();
+    }
+
+    public function attributes():BelongsToMany
+    {
+        return $this->belongsToMany(Attribute::class);
     }
 
     public function getUrl(): string
