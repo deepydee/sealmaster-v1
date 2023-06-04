@@ -1,6 +1,6 @@
 <div>
     <x-slot:header>
-        <h1 class="text-2xl font-semibold text-gray-900">{{ __('Categories') }}</h1>
+        <h1 class="text-2xl font-semibold text-gray-900">{{ __('Attributes') }}</h1>
         <x-breadcrumbs>
             <x-breadcrumbs.item>
                 {{ __('Attributes') }}
@@ -39,6 +39,11 @@
                                 </span>
                             </x-table.heading>
                             <x-table.heading>
+                                <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                    __('Category') }}
+                                </span>
+                            </x-table.heading>
+                            <x-table.heading>
                                 <select wire:model="perPage"
                                     class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     @foreach($itemsToShow as $item)
@@ -69,6 +74,13 @@
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </x-table.cell>
+                                <x-table.cell :hidden="$editedAttributeId !== $attribute->id">
+                                    <x-select wire:model="category" id="category" :options="$categoriesList" name="category"/>
+
+                                    @error('category')
+                                    <span class="text-sm text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </x-table.cell>
                                 {{-- Inline Edit End --}}
                                 {{-- Show Category Name/Slug Start --}}
                                 <x-table.cell :hidden="$editedAttributeId === $attribute->id">
@@ -77,10 +89,19 @@
                                 <x-table.cell :hidden="$editedAttributeId === $attribute->id">
                                     {{ $attributeTypes[$attribute->type] }}
                                 </x-table.cell>
+                                <x-table.cell :hidden="$editedAttributeId === $attribute->id">
+                                    @if ($attribute->categories)
+                                    <ul>
+                                        @foreach ($attribute->categories as $category)
+                                            <li>{{ $category->title }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </x-table.cell>
                                 {{-- Show Category Name/Slug End --}}
                                 <x-table.cell>
                                     @if($editedAttributeId === $attribute->id)
-                                    <x-primary-button wire:click="save" class="mr-2">
+                                    <x-primary-button wire:click="save" class="mr-2 mb-1">
                                         {{ __('Save') }}
                                     </x-primary-button>
                                     <x-primary-button wire:click.prevent="cancelAttributeEdit"
@@ -135,7 +156,14 @@
                     </div>
                     <div class="mb-2 w-full">
                         <x-input-label for="modal-attr-type" value="{{ __('Type') }}" class="sr-only" />
-                        <x-select wire:model="attribute.type" id="attribute.type" :options="$attributeTypes" id="modal-attr-type" name="attribute type"/>
+                        <x-select wire:model="attribute.type" :options="$attributeTypes" id="modal-attr-type" name="attribute type"/>
+                        @error('attribute.type')
+                        <span class="text-sm text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-2 w-full">
+                        <x-input-label for="modal-attr-category" value="{{ __('Category') }}" class="sr-only" />
+                        <x-select wire:model="category" :options="$categoriesList" id="modal-attr-category" name="category"/>
                         @error('attribute.type')
                         <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror

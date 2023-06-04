@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Attributes;
 
 use App\Models\Attribute;
+use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -14,8 +15,10 @@ class AttributeList extends Component
 
     public Attribute $attribute;
     public Collection $attributes;
+    public $category;
     public array $selected = [];
     public array $attributeTypes = [];
+    public array $categoriesList = [];
     public bool $showModal = false;
     public int $editedAttributeId = 0;
     public int $currentPage = 1;
@@ -36,6 +39,7 @@ class AttributeList extends Component
         return [
             'attribute.title' => ['required', 'string', 'min:3'],
             'attribute.type' => ['required', 'string'],
+            'category' => ['required'],
         ];
     }
 
@@ -45,6 +49,9 @@ class AttributeList extends Component
             'text' => 'Текст',
             'image' => 'Изображение',
         ];
+
+        $this->categoriesList = Category::pluck('title', 'id')
+            ->toArray();
     }
 
     public function openModal(): void
@@ -82,14 +89,22 @@ class AttributeList extends Component
 
     public function save(): void
     {
+        // dd(Category::descendantsAndSelf($this->category)->pluck('title', 'id')->toArray());
+
         $this->validate();
+
+        $this->attribute->save();
+
+        $categories = Category::descendantsAndSelf($this->category)
+            ->pluck('id')->toArray();
+
+        $this->attribute->categories()->sync($categories);
 
         $action = $this->editedAttributeId === 0
             ? 'создан'
             : 'отредактирован';
         $message = "Атрибут '{$this->attribute->title}' успешно $action";
 
-        $this->attribute->save();
 
         $this->resetValidation();
         $this->reset('showModal', 'editedAttributeId');
@@ -130,7 +145,8 @@ class AttributeList extends Component
 
     public function render(): View
     {
-        $attrs = Attribute::latest()
+        $attrs = Attribute::with('categories')
+            ->latest()
             ->paginate($this->perPage);
 
         $links = $attrs->links();
