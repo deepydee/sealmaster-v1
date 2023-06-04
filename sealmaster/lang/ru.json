@@ -101,5 +101,7 @@
     "Keywords": "Ключевые слова",
     "Content": "Контент",
     "Edit category": "Редактировать категорию",
-    "Attributes": "Атрибуты"
+    "Attributes": "Атрибуты",
+    "Choose attribute type": "Выберите тип атрибута",
+    "Type": "Тип"
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogSearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Attributes\AttributeList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Blog\BlogCategories;
 use App\Http\Livewire\Blog\BlogTags;
@@ -59,7 +60,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::resource('/categories', AdminCategoryController::class)
             ->only('index', 'update', 'destroy');
 
-        Route::view('/attributes', 'attributes.index')->name('attributes.index');
+        Route::get('/attributes', AttributeList::class)->name('attributes.index');
     });
 
 });

@@ -16,10 +16,10 @@ class Attribute extends Model
         'type',
     ];
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     public function categories(): BelongsToMany
     {

@@ -13,7 +13,7 @@
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
 
-                        <a href="{{ route('admin.categories.create') }}"
+                        <a href="{{ route('admin.attributes.create') }}"
                             class="inline-flex items-center px-4 py-2 mb-3 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent hover:bg-gray-700 cursor-pointer">
                             {{ __('Add') }}
                         </a>
