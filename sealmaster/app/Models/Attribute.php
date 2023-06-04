@@ -26,6 +26,11 @@ class Attribute extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     public function sluggable(): array
     {
         return [
