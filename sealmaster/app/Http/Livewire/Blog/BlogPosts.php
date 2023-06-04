@@ -57,7 +57,7 @@ class BlogPosts extends Component
         $this->tags = BlogTag::pluck('title', 'id')->toArray();
     }
 
-    public function updatedPerPage()
+    public function updatedPerPage(): void
     {
         $this->resetPage();
     }

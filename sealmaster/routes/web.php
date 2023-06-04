@@ -8,6 +8,7 @@ use App\Http\Controllers\BlogTagController;
 use App\Http\Controllers\BlogSearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Attributes\AttributeList;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ use App\Http\Livewire\Blog\BlogTags;
 use App\Http\Livewire\Blog\BlogPosts;
 use App\Http\Livewire\Blog\PostForm;
 use App\Http\Livewire\Categories\CategoryForm;
+use App\Http\Livewire\Products\ProductForm;
+use App\Http\Livewire\Products\ProductList;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,11 +64,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             ->only('index', 'update', 'destroy');
 
         Route::get('/attributes', AttributeList::class)->name('attributes.index');
+
+        Route::view('/products', 'products.index')->name('products.index');
+        Route::get('/products/create', ProductForm::class)->name('products.create');
+        Route::get('/products/{product}', ProductForm::class)->name('products.edit');
     });
 
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/{category_path}/{product}', [ProductController::class, 'show'])
+    ->where('category_path', '[a-zA-Z0-9/_-]+')
+    ->where('product', '[0-9]+-[a-zA-Z0-9_-]+')
+    ->name('products.show');
 
 Route::get('/{path}', [CategoryController::class, 'show'])
     ->where('path', '[a-zA-Z0-9/_-]+')

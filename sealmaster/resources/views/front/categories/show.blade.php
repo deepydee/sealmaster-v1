@@ -53,11 +53,11 @@
 </div>
 @endif
 
-{{-- <div class="row g-2 g-sm-4 mb-4">
+<div class="row g-2 g-sm-4 mb-4">
     @foreach($products as $product)
     <div class="col-sm-6 col-lg-3">
         <div class="good-card rounded">
-        <img src="{{ $product->getFirstMediaUrl('images', 'thumb') }}" alt="{{ $product->title }}">
+        <img src="{{ $product->getFirstMediaUrl('products', 'thumb') }}" alt="{{ $product->title }}">
         <div class="overlay overlay-1">
             <a href="{{ route('products.show', ['category_path' => $category->path, 'product' => $product]) }}"><h3>{{ $product->title }}</h3></a>
         </div>
@@ -65,7 +65,7 @@
     </div>
     @endforeach
     {{ $products->links('vendor.pagination.bootstrap-5') }}
-</div> --}}
+</div>
 @endif
 
 <div class="row mb-4">

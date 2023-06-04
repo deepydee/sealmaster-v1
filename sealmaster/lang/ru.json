@@ -103,5 +103,8 @@
     "Edit category": "Редактировать категорию",
     "Attributes": "Атрибуты",
     "Choose attribute type": "Выберите тип атрибута",
-    "Type": "Тип"
+    "Type": "Тип",
+    "Products": "Товары",
+    "Create product": "Создать товар",
+    "Edit product": "Редактировать товар"
 }

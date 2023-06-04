@@ -15,13 +15,13 @@ class CategoryController extends Controller
     public function show(string $path): View
     {
         $category = Category::wherePath($path)
-            ->with(['children.media']) // 'products.attributes'
+            ->with(['children.media', 'products.attributes'])
             ->firstOrFail();
 
-        // $products = $category->products()
-        //     ->with('attributes', 'media')
-        //     ->paginate(16);
+        $products = $category->products()
+            ->with('attributes', 'media')
+            ->paginate(16);
 
-        return view('front.categories.show', compact('category')); //, 'products'
+        return view('front.categories.show', compact('category', 'products'));
     }
 }

@@ -49,7 +49,7 @@ class Product extends Model implements HasMedia
             ->nonQueued();
     }
 
-    public function attrinutes(): BelongsToMany
+    public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class)
             ->withPivot('value');

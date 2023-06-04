@@ -89,7 +89,12 @@ class Category extends Model implements HasMedia
             ->nonQueued();
     }
 
-    public function attributes():BelongsToMany
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class);
     }
