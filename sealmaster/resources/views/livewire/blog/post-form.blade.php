@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <x-input-label class="mb-1" for="keywords" :value="__('Keywords')" />
+                            <x-input-label class="mb-1" for="keywords" :value="__('Keywords (comma separated)')" />
                             <x-text-input wire:model.lazy="post.keywords" id="keywords" class="block mt-1 w-full"
                                 type="text" />
                             <x-input-error :messages="$errors->get('post.keywords')" class="mt-2" />
@@ -35,7 +35,7 @@
                         <div class="mb-4">
                             <x-input-label class="mb-1" for="blog_category_id" :value="__('Category')" />
                             <x-select wire:model="post.blog_category_id" id="blog_category_id" name="category"
-                                :options="$this->listsForFields['categories']" />
+                            :title="__('Choose category')" :options="$this->listsForFields['categories']" />
                             <x-input-error :messages="$errors->get('post.blog_category_id')" class="mt-2" />
                         </div>
 

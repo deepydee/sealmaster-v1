@@ -6,7 +6,7 @@
                 {{ __('Posts') }}
             </x-breadcrumbs.item>
         </x-breadcrumbs>
-    </x-slot>
+        </x-slot>
 
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -86,46 +86,35 @@
                                 </span>
                             </x-table.heading>
                             <x-table.row>
+                                <x-table.cell>
+                                    <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                                </x-table.cell>
+                                <x-table.cell>
+                                    <input wire:model="searchColumns.title" type="text" placeholder="Поиск..."
+                                        class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                                </x-table.cell>
+                                <x-table.cell></x-table.cell>
+                                <x-table.cell>
+                                    <x-select wire:model="searchColumns.blog_category_id" id="blog_category_id"
+                                        :options="$categories" :title="__('Choose category')" />
+                                </x-table.cell>
+                                <x-table.cell>
+                                    <x-select wire:model="searchColumns.blog_tag_id" id="blog_tag_id" :options="$tags"
+                                        :title="__('Choose tag')" />
+                                </x-table.cell>
 
+                                <x-table.cell></x-table.cell>
+                                <x-table.cell></x-table.cell>
+
+                                <x-table.cell>
+                                    <select wire:model="perPage"
+                                        class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                        @foreach($itemsToShow as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </x-table.cell>
                             </x-table.row>
-                            <x-table.cell>
-                                <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
-                            </x-table.cell>
-                            <x-table.cell>
-                                <input wire:model="searchColumns.title" type="text" placeholder="Поиск..."
-                                    class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-                            </x-table.cell>
-                            <x-table.cell></x-table.cell>
-                            <x-table.cell>
-                                <select wire:model="searchColumns.blog_category_id"
-                                    class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <option value="">-- выберите категорию --</option>
-                                    @foreach($categories as $id => $category)
-                                    <option value="{{ $id }}">{{ $category }}</option>
-                                    @endforeach
-                                </select>
-                            </x-table.cell>
-                            <x-table.cell>
-                                <select wire:model="searchColumns.blog_tag_id"
-                                    class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <option value="">-- выберите тег --</option>
-                                    @foreach($tags as $id => $tag)
-                                    <option value="{{ $id }}">{{ $tag }}</option>
-                                    @endforeach
-                                </select>
-                            </x-table.cell>
-
-                            <x-table.cell></x-table.cell>
-                            <x-table.cell></x-table.cell>
-
-                            <x-table.cell>
-                                <select wire:model="perPage"
-                                    class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    @foreach($itemsToShow as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                            </x-table.cell>
                             </x-slot>
 
                             @forelse($posts as $post)
