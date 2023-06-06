@@ -100,7 +100,7 @@
                         <div x-cloak class="mb-4">
                             <x-input-label for="description" :value="__('Description')" class="mb-1" />
                             <div wire:ignore>
-                                <x-ck-editor wire:model.lazy="product.description" id="description" data-content="@this" id="description"
+                                <x-ck-editor wire:model.lazy="product.description" id="description" data-content="@this"
                                     field="product.description" />
                             </div>
 

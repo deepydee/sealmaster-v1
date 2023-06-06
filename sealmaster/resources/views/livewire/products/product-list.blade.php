@@ -38,7 +38,7 @@
                                 @include('svg.sort')
                                 @endif
                             </x-table.heading>
-                            <x-table.heading wire:click="sortByColumn('title')">
+                            <x-table.heading>
                                 <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
                                     __('Thumbnail') }}
                                 </span>
@@ -132,7 +132,7 @@
                             </x-table.row>
                             @endforelse
                     </x-table>
-
+                    {!! $links !!}
                 </div>
             </div>
         </div>

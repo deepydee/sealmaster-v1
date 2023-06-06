@@ -19,6 +19,8 @@ use App\Http\Livewire\Blog\PostForm;
 use App\Http\Livewire\Categories\CategoryForm;
 use App\Http\Livewire\Products\ProductForm;
 use App\Http\Livewire\Products\ProductList;
+use App\Http\Livewire\Slider\SlideForm;
+use App\Http\Livewire\Slider\Slides;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/products', ProductList::class)->name('products.index');
         Route::get('/products/create', ProductForm::class)->name('products.create');
         Route::get('/products/{product}', ProductForm::class)->name('products.edit');
+
+        Route::get('/slides', Slides::class)->name('slides.index');
+        Route::get('/slides/create', SlideForm::class)->name('slides.create');
+        Route::get('/slides/{slide}', SlideForm::class)->name('slides.edit');
     });
 
 });

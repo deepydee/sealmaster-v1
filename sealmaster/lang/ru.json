@@ -112,5 +112,10 @@
     "Create product": "Создать товар",
     "Edit product": "Редактировать товар",
     "Choose attribute": "Выберите атрибут",
-    "Value": "Значение"
+    "Value": "Значение",
+    "Main": "Главная",
+    "Slider": "Слайдер",
+    "Slides": "Слайды",
+    "Create slide": "Создать слайд",
+    "Edit slide": "Редактировать слайд"
 }

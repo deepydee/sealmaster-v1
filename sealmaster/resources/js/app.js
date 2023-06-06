@@ -3,6 +3,7 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
 import Choices from 'choices.js';
+import '@nextapps-be/livewire-sortablejs';
 
 window.Choices = Choices;
 window.Alpine = Alpine;

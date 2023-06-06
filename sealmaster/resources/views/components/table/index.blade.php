@@ -1,3 +1,5 @@
+@props(['bodyModel' => ''])
+
 <div class="overflow-hidden overflow-x-auto mb-4 min-w-full align-middle sm:rounded-md">
     <table {{ $attributes->merge(['class' => 'min-w-full border divide-y divide-gray-200']) }}>
         <thead>
@@ -5,7 +7,7 @@
                 {{ $heading }}
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+        <tbody {{$bodyModel}} class="bg-white divide-y divide-gray-200 divide-solid">
             {{ $slot }}
         </tbody>
     </table>
