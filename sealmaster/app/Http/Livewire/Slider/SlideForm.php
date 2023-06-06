@@ -24,7 +24,8 @@ class SlideForm extends Component
             'slide.title' => ['required', 'string', 'min:3'],
             'slide.description' => ['required', 'string', 'min:10'],
             'slide.content' => ['nullable', 'string', 'min:10'],
-            'thumbnail' => ['nullable', 'image'],
+            'slide.link' => ['nullable', 'string', 'min:10'],
+            'thumbnail' => ['nullable', 'image', 'max:1000'],
         ];
     }
 
@@ -55,7 +56,7 @@ class SlideForm extends Component
 
     public function updatedThumbnail()
     {
-        $this->validateOnly('slide.thumbnail');
+        $this->validateOnly('thumbnail');
         $this->updateThumb = true;
     }
 

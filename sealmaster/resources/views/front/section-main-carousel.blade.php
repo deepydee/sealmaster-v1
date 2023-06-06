@@ -16,6 +16,7 @@
             description="{{ $slide->description }}"
             srcset="{{ $slide->getFirstMedia('slides')->getSrcSet() }}"
             imgSrc="{{ $slide->getFirstMediaUrl('slides') }}"
+            link="{{ $slide->link }}"
             class="{{ $loop->first ? 'active' : '' }}"
         />
     @endforeach

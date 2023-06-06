@@ -30,6 +30,11 @@
                             </x-table.heading>
                             <x-table.heading>
                                 <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
+                                    __('Link') }}
+                                </span>
+                            </x-table.heading>
+                            <x-table.heading>
+                                <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
                                     __('Thumbnail') }}
                                 </span>
                             </x-table.heading>
@@ -48,6 +53,9 @@
                                 </x-table.cell>
                                 <x-table.cell>
                                     {{ $slide->title }}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    <a href="{{ $slide->link }}" target="_blank" rel="noopener noreferrer">{{ $slide->link }}</a>
                                 </x-table.cell>
                                 <x-table.cell>
                                     <img src="{{ $slide->getFirstMediaURL('slides', 'thumb') }}" alt="Front of women's basic tee in heather gray."

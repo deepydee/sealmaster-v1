@@ -26,6 +26,13 @@
                             <x-input-error :messages="$errors->get('slide.title')" class="mt-2" />
                         </div>
 
+                        <div class="mb-4">
+                            <x-input-label for="link" :value="__('Link')" />
+                            <x-text-input wire:model.lazy="slide.link" id="link" class="block mt-1 w-full"
+                                type="text" />
+                            <x-input-error :messages="$errors->get('slide.link')" class="mt-2" />
+                        </div>
+
                         <div x-cloak class="mb-4">
                             <x-input-label for="description" :value="__('Description')" />
 

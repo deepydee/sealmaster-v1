@@ -18,7 +18,7 @@
         document.addEventListener("livewire:load", () => {
             const selectAll = document.getElementById('selectAll');
 
-            selectAll.addEventListener('change', (event) => {
+            selectAll?.addEventListener('change', (event) => {
                 const items = document.querySelectorAll('.table-item');
                 [...items].forEach(e => e.checked = event.currentTarget.checked);
 

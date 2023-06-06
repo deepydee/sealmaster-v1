@@ -18,6 +18,7 @@ class Slide extends Model implements HasMedia
         'description',
         'content',
         'position',
+        'link',
     ];
 
     protected static function boot()
