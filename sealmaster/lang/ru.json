@@ -88,6 +88,7 @@
     "Date": "Дата",
     "Category": "Категория",
     "Choose category": "Выберите категорию",
+    "Choose tag": "Выберите тег",
     "Select tags": "Выберите теги",
     "Create post": "Создать статью",
     "Edit post": "Редактировать статью",
@@ -99,12 +100,17 @@
     "Catalog": "Каталог",
     "Choose parent category": "Выберите родительскую категорию",
     "Keywords": "Ключевые слова",
+    "Keywords (comma separated)": "Ключевые слова (через запятую)",
     "Content": "Контент",
     "Edit category": "Редактировать категорию",
     "Attributes": "Атрибуты",
+    "Attribute": "Атрибут",
     "Choose attribute type": "Выберите тип атрибута",
     "Type": "Тип",
     "Products": "Товары",
+    "Code": "Код",
     "Create product": "Создать товар",
-    "Edit product": "Редактировать товар"
+    "Edit product": "Редактировать товар",
+    "Choose attribute": "Выберите атрибут",
+    "Value": "Значение"
 }

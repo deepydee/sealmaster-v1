@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Category;
 use App\Models\Product;
-use Attribute;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
@@ -47,7 +46,38 @@ class ProductForm extends Component
 
         if ($this->product->exists) {
             $this->editing = true;
+            $this->product->load('categories', 'attributes');
+
+            $this->categoryId = $this->product->categories->first()->id;
+
+            $category = Category::findOrFail($this->categoryId);
+            $attributes = $category->attributes()
+                ->pluck('title', 'id')
+                ->toArray();
+
+            $this->listsForFields['attributes'] = $attributes;
+
+            if ($this->product->attributes) {
+                foreach ($this->product->attributes as $key => $value) {
+                    $this->attributes[$key] = $value['id'];
+                    $this->attributeValue[$key] = $value['pivot']['value'];
+
+                    if ($this->i > 1) {
+                        $this->inputs[$this->i] = $key;
+                    }
+
+                    $this->i++;
+                }
+            }
+
+            // dd($this->attributes, $this->attributeValue,  $this->inputs);
+
         }
+    }
+
+    public function updatedAttributes()
+    {
+        // dd($this->attributes, $this->attributeValue,  $this->inputs);
     }
 
     public function updatedCategoryId()
@@ -95,6 +125,8 @@ class ProductForm extends Component
 
     public function removeAttribute($i)
     {
+        unset($this->attributes[$this->inputs[$i]]);
+        unset($this->attributeValue[$this->inputs[$i]]);
         unset($this->inputs[$i]);
     }
 

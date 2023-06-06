@@ -65,7 +65,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
         Route::get('/attributes', AttributeList::class)->name('attributes.index');
 
-        Route::view('/products', 'products.index')->name('products.index');
+        Route::get('/products', ProductList::class)->name('products.index');
         Route::get('/products/create', ProductForm::class)->name('products.create');
         Route::get('/products/{product}', ProductForm::class)->name('products.edit');
     });

@@ -22,7 +22,7 @@
                         <div class="mb-4">
                             <x-input-label class="mb-1" for="parent_id" :value="__('Category')" />
                             <x-select wire:model="category.parent_id" id="parent_id" name="parent category"
-                                :options="$this->listsForFields['categories']" />
+                            :title="__('Choose parent category')" :options="$this->listsForFields['categories']" />
                             <x-input-error :messages="$errors->get('category.parent_id')" class="mt-2" />
                         </div>
 

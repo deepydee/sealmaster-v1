@@ -156,14 +156,14 @@
                     </div>
                     <div class="mb-2 w-full">
                         <x-input-label for="modal-attr-type" value="{{ __('Type') }}" class="sr-only" />
-                        <x-select wire:model="attribute.type" :options="$attributeTypes" id="modal-attr-type" name="attribute type"/>
+                        <x-select wire:model="attribute.type" :title="__('Choose attribute type')" :options="$attributeTypes" id="modal-attr-type" name="attribute type"/>
                         @error('attribute.type')
                         <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-2 w-full">
                         <x-input-label for="modal-attr-category" value="{{ __('Category') }}" class="sr-only" />
-                        <x-select wire:model="category" :options="$categoriesList" id="modal-attr-category" name="category"/>
+                        <x-select wire:model="category" :title="__('Choose category')" :options="$categoriesList" id="modal-attr-category" name="category"/>
                         @error('attribute.type')
                         <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror

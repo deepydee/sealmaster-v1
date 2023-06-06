@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Products;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -12,7 +13,8 @@ class ProductList extends Component
     use WithPagination;
 
     public Product $product;
-    public array $products;
+    public Collection $products;
+    public array $categories = [];
     public array $selected = [];
     public string $sortColumn = 'products.updated_at';
     public string $sortDirection = 'desc';
@@ -31,7 +33,7 @@ class ProductList extends Component
 
     public array $searchColumns = [
         'title' => '',
-        // 'blog_tag_id' => 0,
+        'category_id' => 0,
     ];
 
     protected $queryString = [
@@ -45,8 +47,7 @@ class ProductList extends Component
 
     public function mount(): void
     {
-        $this->products = Product::with('categories')
-            ->pluck('title', 'id')->toArray();
+        $this->categories = Category::pluck('title', 'id')->toArray();
     }
 
     public function updatedPerPage(): void
@@ -83,10 +84,12 @@ class ProductList extends Component
         ]);
     }
 
-    public function delete(Product $product)
+    public function delete($id)
     {
-        $message = "Товар '{$product->title}' успешно удален";
+        $product = Product::findOrFail($id);
         $product->delete();
+
+        $message = "Товар '{$product->title}' успешно удален";
 
         $this->dispatchBrowserEvent('notify', $message);
     }
@@ -106,12 +109,18 @@ class ProductList extends Component
 
     public function render()
     {
-        $products = Product::with('categories', 'attributes'); //->orderBy($this->sortColumn, $this->sortDirection);
+        $products = Product::query()
+            ->select(['products.id', 'products.slug', 'products.title', 'products.code', 'categories.id as categoryId', 'categories.title as categoryTitle',])
+            ->join('category_product', 'products.id', '=', 'category_product.product_id')
+            ->join('categories', 'categories.id', '=', 'category_product.category_id')
+            ->with('categories', 'media');
+
 
         foreach ($this->searchColumns as $column => $value) {
             if (!empty($value)) {
                 $products
-                    ->when($column === 'title', fn($posts) => $posts->where('blog_posts.' . $column, 'LIKE', '%' . $value . '%'));
+                    // ->when($column === 'category_id', fn($products) => $products->whereRelation('categoires', 'id', $value))
+                    ->when($column === 'title', fn($products) => $products->where('products.' . $column, 'LIKE', '%' . $value . '%'));
             }
         }
 
@@ -119,8 +128,10 @@ class ProductList extends Component
 
         $links = $products->paginate($this->perPage)->links();
 
+        $this->products = collect($products->paginate($this->perPage)->items());
+
         return view('livewire.products.product-list', [
-            'links' => $links,
+        'links' => $links,
         ]);
     }
 }

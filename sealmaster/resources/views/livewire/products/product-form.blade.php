@@ -21,24 +21,32 @@
 
                         <div class="mb-4">
                             <x-input-label class="mb-1" for="categoryId" :value="__('Category')" />
-                            <x-select wire:model="categoryId" id="categoryId" name="category"
+                            <x-select wire:model="categoryId" id="categoryId" name="category" :title="__('Choose category')"
                                 :options="$this->listsForFields['categories']" />
                             <x-input-error :messages="$errors->get('categoryId')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center gap-3 mb-4">
                             <div>
-                                <x-input-label class="mb-1" for="attributes-0" :value="__('Attributes')" />
-                                <x-select wire:model="attributes.0" class="mt-1" id="attributes-0" name="attributes-0"
-                                    :options="$this->listsForFields['attributes']" />
+                                <x-input-label class="mb-1" for="attributes-00" :value="__('Attribute')" />
+                                <x-select wire:model="attributes.0" class="mt-1" id="attributes-00" name="attributes-00"
+                                    :options="$this->listsForFields['attributes']" :title="__('Choose attribute')"/>
                                 <x-input-error :messages="$errors->get('attributes.0')" class="mt-2" />
                             </div>
-                            <div>
-                                <x-input-label for="attributeVal-0" :value="__('Value')" />
-                                <x-text-input wire:model.lazy="attributeValue.0" id="attributeVal-0"
+                            {{-- @switch($attributeTypes[0])
+                                @case('image')
+                                    <p>Image</p>
+                                    @break
+                                @default
+
+                            @endswitch --}}
+                            <div x-cloak>
+                                <x-input-label for="attributeVal-00" :value="__('Value')" />
+                                <x-text-input wire:model.lazy="attributeValue.0" id="attributeVal-00"
                                     class="block mt-1 w-full" type="text" />
                                 <x-input-error :messages="$errors->get('attributeValue.0')" class="mt-2" />
                             </div>
+
                             <button wire:click.prevent="addAttribute({{$i}})" type="button"
                                 class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <!-- Heroicon name: solid/plus-sm -->
@@ -51,11 +59,11 @@
                             </button>
                         </div>
                         @foreach($inputs as $key => $value)
-                        <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center gap-3 mb-4" x-cloak>
                             <div>
                                 <x-input-label class="mb-1" for="attributes-{{ $key }}" :value="__('Attributes')" />
                                 <x-select wire:model="attributes.{{ $value }}" class="mt-1" id="attributes-{{ $key }}" name="attributes-{{ $key }}"
-                                    :options="$this->listsForFields['attributes']" />
+                                :title="__('Choose attribute')" :options="$this->listsForFields['attributes']" />
                                 <x-input-error :messages="$errors->get('attributes.{{ $value }}')" class="mt-2" />
                             </div>
                             <div>
@@ -90,9 +98,9 @@
                         </div>
 
                         <div x-cloak class="mb-4">
-                            <x-input-label for="description" :value="__('Description')" />
+                            <x-input-label for="description" :value="__('Description')" class="mb-1" />
                             <div wire:ignore>
-                                <x-ck-editor wire:model.lazy="product.description" id="description" data-content="@this" id="content"
+                                <x-ck-editor wire:model.lazy="product.description" id="description" data-content="@this" id="description"
                                     field="product.description" />
                             </div>
 
