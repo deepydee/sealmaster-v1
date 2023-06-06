@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Slide;
 use Illuminate\Contracts\View\View;
 
 class IndexController extends Controller
@@ -21,6 +22,11 @@ class IndexController extends Controller
             ->with('children.media')
             ->get();
 
-        return view('index', compact('goods', 'repair', 'spareParts'));
+
+        $slides = Slide::with(['media'])
+            ->orderBy('position', 'asc')
+            ->get();
+
+        return view('index', compact('goods', 'repair', 'spareParts', 'slides'));
     }
 }

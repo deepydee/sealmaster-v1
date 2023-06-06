@@ -1,7 +1,9 @@
 @props(['target'])
 
 <div id="carousel" class="carousel slide" data-bs-ride="true">
-    {{ $header }}
+    <ol class="carousel-indicators d-none d-md-flex">
+        {{ $header }}
+    </ol>
     <div class="carousel-inner" role="listbox">
         {{ $slot }}
     </div>
