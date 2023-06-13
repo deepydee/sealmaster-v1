@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Attributes;
 use App\Models\Attribute;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AttributeList extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Attribute $attribute;
     public Collection $attributes;
@@ -77,6 +78,8 @@ class AttributeList extends Component
 
     public function editAttribute(Attribute $attribute): void
     {
+        $this->authorize('update', $attribute);
+
         $this->editedAttributeId = $attribute->id;
         $this->attribute = $attribute;
     }
@@ -89,6 +92,8 @@ class AttributeList extends Component
 
     public function save(): void
     {
+        $this->authorize('create', $this->attribute);
+
         // dd(Category::descendantsAndSelf($this->category)->pluck('title', 'id')->toArray());
 
         $this->validate();
@@ -125,6 +130,8 @@ class AttributeList extends Component
 
     public function delete(Attribute $attribute)
     {
+        $this->authorize('delete', $attribute);
+
         $attribute->delete();
 
         $message = "Атрибут '{$attribute->title}' успешно удален";

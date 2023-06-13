@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class ProductList extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Product $product;
     public Collection $products;
@@ -72,7 +73,6 @@ class ProductList extends Component
         }
     }
 
-
     public function deleteConfirm($method, $id = null)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
@@ -86,6 +86,8 @@ class ProductList extends Component
 
     public function delete($id)
     {
+        $this->authorize('delete', Product::findOrFail($id));
+
         $product = Product::findOrFail($id);
         $product->delete();
 

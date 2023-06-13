@@ -12,7 +12,7 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <x-alert />
                 <div class="p-6 bg-white border-b border-gray-200">
-
+                    @can('create', \App\Models\Attribute::class)
                     <x-primary-button wire:click.prevent="openModal" x-data=""
                         x-on:click.prevent="$dispatch('open-modal', 'add-category')" class="mb-4">
                         {{ __('Add') }}
@@ -22,11 +22,13 @@
                         wire:loading.attr="disabled">
                         {{ __('Delete Selected') }}
                     </x-remove-button>
-
+                    @endcan
                     <x-table>
                         <x-slot:heading>
                             <x-table.heading>
+                                @can('create', \App\Models\Attribute::class)
                                 <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                                @endcan
                             </x-table.heading>
                             <x-table.heading>
                                 <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
@@ -56,8 +58,10 @@
                             @forelse($attributes as $attribute)
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('delete', $attribute)
                                     <input wire:model="selected" type="checkbox" class="table-item cursor-pointer"
                                         value="{{ $attribute->id }}">
+                                    @endcan
                                 </x-table.cell>
                                 {{-- Inline Edit Start --}}
                                 <x-table.cell :hidden="$editedAttributeId !== $attribute->id">
@@ -68,14 +72,16 @@
                                     @enderror
                                 </x-table.cell>
                                 <x-table.cell :hidden="$editedAttributeId !== $attribute->id">
-                                    <x-select wire:model="attribute.type" id="attribute.type" :options="$attributeTypes" name="attribute type"/>
+                                    <x-select wire:model="attribute.type" id="attribute.type" :options="$attributeTypes"
+                                        name="attribute type" />
 
                                     @error('attribute.type')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </x-table.cell>
                                 <x-table.cell :hidden="$editedAttributeId !== $attribute->id">
-                                    <x-select wire:model="category" id="category" :options="$categoriesList" name="category"/>
+                                    <x-select wire:model="category" id="category" :options="$categoriesList"
+                                        name="category" />
 
                                     @error('category')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
@@ -93,7 +99,7 @@
                                     @if ($attribute->categories)
                                     <ul>
                                         @foreach ($attribute->categories as $category)
-                                            <li>{{ $category->title }}</li>
+                                        <li>{{ $category->title }}</li>
                                         @endforeach
                                     </ul>
                                     @endif
@@ -109,14 +115,18 @@
                                         {{ __('Cancel') }}
                                     </x-primary-button>
                                     @else
+                                    @can('update', $attribute)
                                     <span wire:click="editAttribute({{ $attribute->id }})" class="mr-2"
                                         title="{{ __('Edit') }}">
                                         @include('svg.btn-edit')
                                     </span>
+                                    @endcan
+                                    @can('delete', $attribute)
                                     <span wire:click="deleteConfirm('delete', {{ $attribute->id }})"
                                         title="{{ __('Remove') }}">
                                         @include('svg.btn-trash')
                                     </span>
+                                    @endcan
                                     @endif
                                 </x-table.cell>
                             </x-table.row>
@@ -156,14 +166,16 @@
                     </div>
                     <div class="mb-2 w-full">
                         <x-input-label for="modal-attr-type" value="{{ __('Type') }}" class="sr-only" />
-                        <x-select wire:model="attribute.type" :title="__('Choose attribute type')" :options="$attributeTypes" id="modal-attr-type" name="attribute type"/>
+                        <x-select wire:model="attribute.type" :title="__('Choose attribute type')"
+                            :options="$attributeTypes" id="modal-attr-type" name="attribute type" />
                         @error('attribute.type')
                         <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-2 w-full">
                         <x-input-label for="modal-attr-category" value="{{ __('Category') }}" class="sr-only" />
-                        <x-select wire:model="category" :title="__('Choose category')" :options="$categoriesList" id="modal-attr-category" name="category"/>
+                        <x-select wire:model="category" :title="__('Choose category')" :options="$categoriesList"
+                            id="modal-attr-category" name="category" />
                         @error('attribute.type')
                         <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror

@@ -9,10 +9,11 @@ use App\Models\BlogPost as Post;
 use App\Models\BlogTag;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogPosts extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Post $post;
     public Collection $posts;
@@ -68,6 +69,8 @@ class BlogPosts extends Component
 
     public function toggleIsActive(Post $post): void
     {
+        $this->authorize('update', $post);
+
         $post->update([
             'is_published' => $this->active[$post->id],
         ]);
@@ -91,7 +94,6 @@ class BlogPosts extends Component
         }
     }
 
-
     public function deleteConfirm($method, $id = null)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
@@ -105,6 +107,8 @@ class BlogPosts extends Component
 
     public function delete(Post $post)
     {
+        $this->authorize('delete', $post);
+
         $message = "Статья '{$post->title}' успешно удалена";
         $post->delete();
 

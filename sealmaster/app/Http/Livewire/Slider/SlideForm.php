@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Slider;
 
 use App\Models\Slide;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
@@ -11,7 +12,7 @@ use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
 
 class SlideForm extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public Slide $slide;
     public bool $editing = false;
@@ -67,6 +68,8 @@ class SlideForm extends Component
 
     public function save(): RedirectResponse|Redirector
     {
+        $this->authorize('create', $this->slide);
+
         $this->validate();
 
         $this->slide->save();

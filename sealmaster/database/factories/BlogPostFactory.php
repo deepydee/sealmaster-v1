@@ -18,13 +18,17 @@ class BlogPostFactory extends Factory
      */
     public function definition(): array
     {
+        $editorsIds = User::whereRelation('roles', 'title', 'editor')
+            ->pluck('id')
+            ->toArray();
+
         return [
             'title' => fake()->sentence(),
             'description' => fake()->realText(),
             'keywords' => join(',', fake()->words(fake()->numberBetween(3, 9))),
             'content' => fake()->realText(3000),
             'blog_category_id' => BlogCategory::factory(),
-            'user_id' => User::factory(),
+            'user_id' => fake()->randomElement($editorsIds),
             'views' => fake()->randomNumber(5, false),
             'is_published' => fake()->randomElement([0 , 1]),
             'created_at' => fake()->unixTime(),

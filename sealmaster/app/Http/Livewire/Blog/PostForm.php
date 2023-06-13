@@ -6,6 +6,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogPost as Post;
 use App\Models\BlogTag;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
@@ -13,7 +14,7 @@ use Livewire\WithFileUploads;
 
 class PostForm extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public Post $post;
     public $thumbnail;
@@ -87,12 +88,14 @@ class PostForm extends Component
         $this->listsForFields['tags'] = BlogTag::pluck('title', 'id')
             ->toArray();
 
-        $this->listsForFields['users'] = User::pluck('name', 'id')
+        $this->listsForFields['users'] = User::whereRelation('roles', 'title', 'editor')->pluck('name', 'id')
             ->toArray();
     }
 
     public function save(): RedirectResponse|Redirector
     {
+        $this->authorize('create', $this->post);
+
         $this->validate();
 
         $this->post->save();

@@ -11,7 +11,7 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
+                    @can('create', \App\Models\BlogTag::class)
                     <x-primary-button wire:click.prevent="openModal" x-data=""
                         x-on:click.prevent="$dispatch('open-modal', 'add-tag')" class="mb-4">
                         {{ __('Add') }}
@@ -21,11 +21,13 @@
                         wire:loading.attr="disabled">
                         {{ __('Delete Selected') }}
                     </x-remove-button>
-
+                    @endcan
                     <x-table>
                         <x-slot:heading>
                             <x-table.heading>
+                                @can('create', \App\Models\BlogTag::class)
                                 <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                                @endcan
                             </x-table.heading>
                             <x-table.heading wire:click="sortByColumn('blog_tags.title')">
                                 <span class="text-xs font-medium tracking-wider leading-4 text-gray-500 uppercase">{{
@@ -58,8 +60,10 @@
                             @forelse($tags as $tag)
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('delete', $tag)
                                     <input wire:model="selected" type="checkbox" class="table-item cursor-pointer"
                                         value="{{ $tag->id }}">
+                                    @endcan
                                 </x-table.cell>
                                 {{-- Inline Edit Start --}}
                                 <x-table.cell :hidden="$editedTagId !== $tag->id">
@@ -94,13 +98,17 @@
                                         {{ __('Cancel') }}
                                     </x-primary-button>
                                     @else
+                                    @can('update', $tag)
                                     <span wire:click="editTag({{ $tag->id }})" class="mr-2" title="{{ __('Edit') }}">
                                         @include('svg.btn-edit')
                                     </span>
+                                    @endcan
+                                    @can('delete', $tag)
                                     <span wire:click="deleteConfirm('delete', {{ $tag->id }})"
                                         title="{{ __('Remove') }}">
                                         @include('svg.btn-trash')
                                     </span>
+                                    @endcan
                                     @endif
                                 </x-table.cell>
                             </x-table.row>

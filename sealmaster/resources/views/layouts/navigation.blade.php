@@ -52,10 +52,10 @@
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Main') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Main') }} </span>
                     </div>
                 </div>
                 <x-nav-link :href="route('admin.slides.index')" :active="request()->routeIs('profile.*')">
@@ -64,13 +64,14 @@
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
                     </div>
                 </div>
-                <x-nav-link :href="route('admin.blog.categories.index')" :active="request()->routeIs('admin.blog.categories.*')">
+                <x-nav-link :href="route('admin.blog.categories.index')"
+                    :active="request()->routeIs('admin.blog.categories.*')">
                     @include('svg.category')
                     {{ __('Categories') }}
                 </x-nav-link>
@@ -84,10 +85,10 @@
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
                     </div>
                 </div>
                 <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
@@ -104,16 +105,15 @@
                 </x-nav-link>
             </nav>
         </div>
-        <div class="flex-shrink-0 flex justify-between border-t border-gray-200 p-4">
-            <a href="{{ route('profile.edit') }}" class="flex-shrink-0 group block">
+        <div class="flex-shrink-0 flex flex-wrap justify-between border-t border-gray-200 p-4">
+            <a href="{{ route('profile.edit') }}">
                 <div class="flex items-center">
                     <div>
-                        <img class="inline-block h-10 w-10 rounded-full"
-                            src="{{ auth()->user()->getFirstMediaURL('avatars', 'thumb') }}"
-                            alt="">
+                        <img class="inline-block w-10 rounded-full"
+                            src="{{ auth()->user()->getFirstMediaURL('avatars', 'thumb') }}" alt="">
                     </div>
                     <div class="ml-3">
-                        <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">
+                        <p class="text-xs font-medium text-gray-700 group-hover:text-gray-900">
                             {{ auth()->user()->name }}
                         </p>
                         <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">
@@ -157,25 +157,26 @@
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Main') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Main') }} </span>
                     </div>
                 </div>
-                <x-nav-link :href="route('admin.slides.index')" :active="request()->routeIs('profile.*')">
+                <x-nav-link :href="route('admin.slides.index')" :active="request()->routeIs('admin.slides*')">
                     @include('svg.slider')
                     {{ __('Slider') }}
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Blog') }} </span>
                     </div>
                 </div>
-                <x-nav-link :href="route('admin.blog.categories.index')" :active="request()->routeIs('admin.blog.categories.*')">
+                <x-nav-link :href="route('admin.blog.categories.index')"
+                    :active="request()->routeIs('admin.blog.categories.*')">
                     @include('svg.category')
                     {{ __('Categories') }}
                 </x-nav-link>
@@ -189,10 +190,10 @@
                 </x-nav-link>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                      <div class="w-full border-t border-gray-300"></div>
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center">
-                      <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
+                        <span class="px-2 bg-white text-sm text-gray-500"> {{ __('Catalog') }} </span>
                     </div>
                 </div>
                 <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
@@ -207,33 +208,33 @@
                     @include('svg.post')
                     {{ __('Products') }}
                 </x-nav-link>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-nav-link :href="route('logout')" class="hover:text-red-700 transition-all" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                        @include('svg.logout')
+                        Выход
+                    </x-nav-link>
+                </form>
             </nav>
         </div>
-        <div class="flex-shrink-0 flex justify-between border-t border-gray-200 p-4">
-            <a href="{{ route('profile.edit') }}" class="flex-shrink-0 group block">
+        <div class="flex-shrink-0 flex flex-wrap justify-between border-t border-gray-200 p-4">
+            <a href="{{ route('profile.edit') }}">
                 <div class="flex items-center">
                     <div>
-                        <img class="inline-block h-9 w-9 rounded-full"
-                            src="{{ auth()->user()->getFirstMediaURL('avatars', 'thumb') }}"
-                            alt="">
+                        <img class="inline-block w-9 rounded-full"
+                            src="{{ auth()->user()->getFirstMediaURL('avatars', 'thumb') }}" alt="">
                     </div>
                     <div class="ml-3">
                         <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
                             {{ auth()->user()->name }}
                         </p>
                         <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                           {{ __('Profile') }}
+                            {{ __('Profile') }}
                         </p>
                     </div>
                 </div>
             </a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <x-nav-link :href="route('logout')" class="hover:text-red-700 transition-all" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                    @include('svg.logout')
-                </x-nav-link>
-            </form>
         </div>
     </div>
 </div>

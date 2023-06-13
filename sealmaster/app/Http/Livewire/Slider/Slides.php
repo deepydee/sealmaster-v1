@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Slider;
 
 use App\Models\Slide;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Slides extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Slide $slide;
     public Collection $slides;
@@ -55,6 +56,8 @@ class Slides extends Component
 
     public function delete($id)
     {
+        $this->authorize('delete', Slide::findOrFail($id));
+
         $product = Slide::findOrFail($id);
         $product->delete();
 
@@ -65,6 +68,8 @@ class Slides extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', [auth()->user()]);
+
         $slides = Slide::with('media')->orderBy('position')->paginate($this->perPage);
         $links = $slides->links();
         $this->currentPage = $slides->currentPage();

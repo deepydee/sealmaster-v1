@@ -71,9 +71,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/products/create', ProductForm::class)->name('products.create');
         Route::get('/products/{product}', ProductForm::class)->name('products.edit');
 
-        Route::get('/slides', Slides::class)->name('slides.index');
-        Route::get('/slides/create', SlideForm::class)->name('slides.create');
-        Route::get('/slides/{slide}', SlideForm::class)->name('slides.edit');
+        // Route::middleware(['can:viewAny'])->group(function () {
+            Route::get('/slides', Slides::class)->name('slides.index');
+            Route::get('/slides/create', SlideForm::class)->name('slides.create');
+            Route::get('/slides/{slide}', SlideForm::class)->name('slides.edit');
+        // });
     });
 
 });

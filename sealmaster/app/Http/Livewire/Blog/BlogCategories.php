@@ -8,10 +8,11 @@ use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogCategories extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Category $category;
     public Collection $categories;
@@ -77,6 +78,8 @@ class BlogCategories extends Component
 
     public function editCategory(Category $category): void
     {
+        $this->authorize('update', $category);
+
         $this->editedCategoryId = $category->id;
         $this->category = $category;
     }
@@ -89,6 +92,8 @@ class BlogCategories extends Component
 
     public function save(): void
     {
+        $this->authorize('create', $this->category);
+
         $this->validate();
 
         $action = $this->editedCategoryId === 0
@@ -117,6 +122,8 @@ class BlogCategories extends Component
 
     public function delete(Category $category)
     {
+        $this->authorize('delete', $category);
+
         $message = "Категория '{$category->title}' успешно удалена";
         $category->delete();
 

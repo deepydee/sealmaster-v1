@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
@@ -11,7 +12,7 @@ use Livewire\WithFileUploads;
 
 class ProductForm extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public Product $product;
     public $thumbnail;
@@ -132,8 +133,9 @@ class ProductForm extends Component
 
     public function save(): RedirectResponse|Redirector
     {
-        $this->validate();
+        $this->authorize('create', $this->product);
 
+        $this->validate();
 
         $attributes = [];
 

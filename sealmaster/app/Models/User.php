@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,6 +47,29 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function isAdministrator(): bool
+    {
+        return $this->roles->first()->id === Role::IS_ADMIN;
+    }
+
+    // public function getRoles(): string
+    // {
+    //     $rolesTitles = [
+    //         1 => 'Администратор',
+    //         2 => 'Редактор',
+    //         3 => 'Менеджер',
+    //     ];
+
+    //     $userRolesIds = $this->roles->pluck('id')->toArray();
+
+    //     return join(', ', array_filter($rolesTitles, fn ($id, $title) => in_array($id, $userRolesIds) ? $title : '', ARRAY_FILTER_USE_BOTH));
+    // }
 
     public function registerMediaCollections(): void
     {

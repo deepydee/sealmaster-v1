@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ use Livewire\WithFileUploads;
 
 class CategoryForm extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public Category $category;
     public $initialParentId;
@@ -79,6 +80,8 @@ class CategoryForm extends Component
 
     public function save(): RedirectResponse|Redirector
     {
+        $this->authorize('create', $this->category);
+
         $this->validate();
 
         DB::transaction(function () {

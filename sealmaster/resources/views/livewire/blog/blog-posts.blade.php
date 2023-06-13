@@ -13,15 +13,16 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     <div class="mb-4">
+                        @can('create', \App\Models\BlogPost::class)
                         <a href="{{ route('admin.blog.posts.create') }}"
                             class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent hover:bg-gray-700 cursor-pointer">
                             {{ __('Add') }}
                         </a>
-
                         <x-remove-button :disabled="!$this->selectedCount" wire:click="deleteConfirm('deleteSelected')"
                             wire:loading.attr="disabled">
                             {{ __('Delete Selected') }}
                         </x-remove-button>
+                        @endcan
                     </div>
 
 
@@ -87,7 +88,9 @@
                             </x-table.heading>
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('create', \App\Models\BlogPost::class)
                                     <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                                    @endcan
                                 </x-table.cell>
                                 <x-table.cell>
                                     <input wire:model="searchColumns.title" type="text" placeholder="Поиск..."
@@ -120,8 +123,10 @@
                             @forelse($posts as $post)
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('delete', $post)
                                     <input wire:model="selected" type="checkbox" class="table-item cursor-pointer"
                                         value="{{ $post->id }}">
+                                    @endcan
                                 </x-table.cell>
                                 <x-table.cell>
                                     {{ $post->title }}
@@ -157,13 +162,17 @@
                                 </x-table.cell>
 
                                 <x-table.cell>
+                                    @can('update', $post)
                                     <a href="{{ route('admin.blog.posts.edit', $post) }}" title="{{ __('Edit') }}">
                                         @include('svg.btn-edit')
                                     </a>
+                                    @endcan
+                                    @can('delete', $post)
                                     <span wire:click="deleteConfirm('delete', {{ $post->id }})"
                                         title="{{ __('Remove') }}">
                                         @include('svg.btn-trash')
                                     </span>
+                                    @endcan
                                 </x-table.cell>
                             </x-table.row>
                             @empty

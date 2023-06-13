@@ -67,7 +67,7 @@ class BlogPost extends Model implements HasMedia
     {
         $this->addMediaCollection('blog')
              ->withResponsiveImages()
-             ->useFallbackUrl(asset('storage/img/img/placeholder-image.jpg'))
+             ->useFallbackUrl(asset('storage/img/placeholder-image.jpg'))
              ->useFallbackUrl(asset('storage/img/placeholder-image.jpg'), 'thumb')
              ->useFallbackPath(asset('storage/img/placeholder-image.jpg'))
              ->useFallbackPath(asset('storage/img/placeholder-image.jpg'), 'thumb');

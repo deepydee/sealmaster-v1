@@ -13,6 +13,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     <div class="mb-4">
+                        @can('create', \App\Models\Product::class)
                         <a href="{{ route('admin.products.create') }}"
                             class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent hover:bg-gray-700 cursor-pointer">
                             {{ __('Add') }}
@@ -22,6 +23,7 @@
                             wire:loading.attr="disabled">
                             {{ __('Delete Selected') }}
                         </x-remove-button>
+                        @endcan
                     </div>
 
                     <x-table>
@@ -70,7 +72,9 @@
                             </x-table.heading>
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('create', \App\Models\Product::class)
                                     <input id="selectAll" type="checkbox" value="" class="cursor-pointer">
+                                    @endcan
                                 </x-table.cell>
                                 <x-table.cell>
                                     <input wire:model="searchColumns.title" type="text" placeholder="Поиск..."
@@ -82,7 +86,7 @@
                                 </x-table.cell>
                                 <x-table.cell>
                                     <x-select wire:model="searchColumns.category_id" id="category_id"
-                                    :options="$categories" :title="__('Choose category')" />
+                                        :options="$categories" :title="__('Choose category')" />
                                 </x-table.cell>
                                 <x-table.cell>
                                     <select wire:model="perPage"
@@ -98,30 +102,38 @@
                             @forelse($products as $product)
                             <x-table.row>
                                 <x-table.cell>
+                                    @can('delete', $product)
                                     <input wire:model="selected" type="checkbox" class="table-item cursor-pointer"
                                         value="{{ $product->id }}">
+                                    @endcan
                                 </x-table.cell>
                                 <x-table.cell>
                                     {{ $product->title }}
                                 </x-table.cell>
                                 <x-table.cell>
-                                    <img src="{{ $product->getFirstMediaURL('products', 'thumb') }}" alt="Front of women's basic tee in heather gray."
-                                    class="flex-none w-24 h-24 object-center object-cover bg-gray-100 rounded-md">
+                                    <img src="{{ $product->getFirstMediaURL('products', 'thumb') }}"
+                                        alt="Front of women's basic tee in heather gray."
+                                        class="flex-none w-24 h-24 object-center object-cover bg-gray-100 rounded-md">
                                 </x-table.cell>
-                                 <x-table.cell>
+                                <x-table.cell>
                                     {{ $product->code }}
-                                 </x-table.cell>
-                                 <x-table.cell>
+                                </x-table.cell>
+                                <x-table.cell>
                                     {{ $product->categoryTitle }}
-                                 </x-table.cell>
-                                 <x-table.cell>
-                                    <a href="{{ route('admin.products.edit', $product->slug) }}" title="{{ __('Edit') }}">
+                                </x-table.cell>
+                                <x-table.cell>
+                                    @can('update', $product)
+                                    <a href="{{ route('admin.products.edit', $product->slug) }}"
+                                        title="{{ __('Edit') }}">
                                         @include('svg.btn-edit')
                                     </a>
+                                    @endcan
+                                    @can('delete', $product)
                                     <span wire:click="deleteConfirm('delete', {{ $product->id }})"
                                         title="{{ __('Remove') }}">
                                         @include('svg.btn-trash')
                                     </span>
+                                    @endcan
                                 </x-table.cell>
                             </x-table.row>
                             @empty

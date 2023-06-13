@@ -8,10 +8,11 @@ use App\Models\BlogTag as Tag;
 use Illuminate\Support\Collection;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogTags extends Component
 {
-    use WithPagination;
+    use WithPagination, AuthorizesRequests;
 
     public Tag $tag;
     public Collection $tags;
@@ -77,6 +78,8 @@ class BlogTags extends Component
 
     public function editTag(Tag $tag): void
     {
+        $this->authorize('update', $tag);
+
         $this->editedTagId = $tag->id;
         $this->tag = $tag;
     }
@@ -89,6 +92,8 @@ class BlogTags extends Component
 
     public function save(): void
     {
+        $this->authorize('create', $this->tag);
+
         $this->validate();
 
         $action = $this->editedTagId === 0
@@ -103,6 +108,7 @@ class BlogTags extends Component
 
         $this->dispatchBrowserEvent('notify', $message);
     }
+
     public function deleteConfirm($method, $id = null)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
