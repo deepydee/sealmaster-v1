@@ -34,7 +34,7 @@ class ProductList extends Component
 
     public array $searchColumns = [
         'title' => '',
-        'category_id' => 0,
+        'product_category_id' => 0,
     ];
 
     protected $queryString = [
@@ -119,11 +119,10 @@ class ProductList extends Component
             ->join('categories', 'categories.id', '=', 'category_product.category_id')
             ->with('categories', 'media');
 
-
         foreach ($this->searchColumns as $column => $value) {
             if (!empty($value)) {
                 $products
-                    // ->when($column === 'category_id', fn($products) => $products->whereRelation('categoires', 'id', $value))
+                    ->when($column === 'product_category_id', fn($products) => $products->whereRelation('categories', 'id', $value))
                     ->when($column === 'title', fn($products) => $products->where('products.' . $column, 'LIKE', '%' . $value . '%'));
             }
         }

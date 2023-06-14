@@ -85,7 +85,7 @@
                                 <x-table.cell>
                                 </x-table.cell>
                                 <x-table.cell>
-                                    <x-select wire:model="searchColumns.category_id" id="category_id"
+                                    <x-select wire:model="searchColumns.product_category_id" id="category_id"
                                         :options="$categories" :title="__('Choose category')" />
                                 </x-table.cell>
                                 <x-table.cell>
@@ -108,7 +108,7 @@
                                     @endcan
                                 </x-table.cell>
                                 <x-table.cell>
-                                    {{ $product->title }}
+                                    <a href="{{ route('products.show', ['category_path' => $product->categories->first()->path, 'product' => $product]) }}" target="_blank">{{ $product->title }}</a>
                                 </x-table.cell>
                                 <x-table.cell>
                                     <img src="{{ $product->getFirstMediaURL('products', 'thumb') }}"
