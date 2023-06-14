@@ -20,9 +20,9 @@
                             <span class="post-category text-white bg-success mb-3">{{ $blogPost->category->title }}</span>
                             <h1 class="mb-4" itemprop="headline"><a href="{{ route('blog.page', $blogPost) }}" class="no-underline">{{ $blogPost->title }}</a></h1>
                             <div class="post-meta align-items-center text-center">
-                                <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="{{ $blogPost->user->getFirstMediaURL('avatars', 'thumb') }}"
+                                <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="{{ isset($blogPost->user) ? $blogPost->user->getFirstMediaURL('avatars', 'thumb') : '' }}"
                                         alt="Image" class="img-fluid"></figure>
-                                <span class="d-inline-block mt-1">{{ $blogPost->user->name }}</span>
+                                <span class="d-inline-block mt-1">{{ $blogPost->user->name ?? 'Анонимный автор' }}</span>
                                 <span itemprop="dateUpdated">&nbsp;-&nbsp; {{ $blogPost->updated_at }}</span>
                             </div>
                         </div>
@@ -63,9 +63,9 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <img src="{{ $blogPost->user->getFirstMediaURL('avatars', 'thumb_post') }}" width="216"
+                            <img src="{{ isset($blogPost->user) ? $blogPost->user->getFirstMediaURL('avatars', 'thumb') : '' }}" width="216"
                                 height="216" class="rounded-circle img-responsive me-2 mb-3 post-image">
-                            <h3 class="fw-bold" itemprop="author">{{ $blogPost->user->name }}</h3>
+                            <h3 class="fw-bold" itemprop="author">{{ isset($blogPost->user) ? $blogPost->user->name : 'Анонимный автор' }}</h3>
                             <span class="text-muted">Кандидат технических наук, член наблюдательного совета ООН</span>
                         </span>
                     </div>

@@ -15,7 +15,7 @@ class BlogPostSeeder extends Seeder
     public function run(Faker $faker): void
     {
         BlogPost::factory()
-            ->count(10)
+            ->count(5)
             ->create();
 
             $posts = BlogPost::all();

@@ -20,9 +20,10 @@ return new class extends Migration
             $table->text('content');
             $table->boolean('is_published')->default(false);
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->default(1)
-                ->setNullOnDelete();
+                ->onDelete('set null');
             $table->foreignId('blog_category_id')
                 ->constrained()
                 ->cascadeOnUpdate()

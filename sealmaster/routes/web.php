@@ -21,6 +21,7 @@ use App\Http\Livewire\Products\ProductForm;
 use App\Http\Livewire\Products\ProductList;
 use App\Http\Livewire\Slider\SlideForm;
 use App\Http\Livewire\Slider\Slides;
+use App\Http\Livewire\Users\UserList;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     });
 
     Route::name('admin.')->group(function () {
+        Route::get('/users', UserList::class)->name('users.index');
+
         Route::get('/categories/create/{category?}', CategoryForm::class)
             ->name('categories.create');
         Route::resource('/categories', AdminCategoryController::class)

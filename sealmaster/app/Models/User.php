@@ -58,18 +58,19 @@ class User extends Authenticatable implements HasMedia
         return $this->roles->first()->id === Role::IS_ADMIN;
     }
 
-    // public function getRoles(): string
-    // {
-    //     $rolesTitles = [
-    //         1 => 'Администратор',
-    //         2 => 'Редактор',
-    //         3 => 'Менеджер',
-    //     ];
+    public function getRoles(): string
+    {
+        $rolesTitles = [
+            1 => 'Администратор',
+            2 => 'Редактор',
+            3 => 'Менеджер',
+        ];
 
-    //     $userRolesIds = $this->roles->pluck('id')->toArray();
+        $userRolesIds = $this->roles->pluck('id')->toArray();
+        $filteredTitles = array_intersect_key($rolesTitles, array_flip($userRolesIds));
 
-    //     return join(', ', array_filter($rolesTitles, fn ($id, $title) => in_array($id, $userRolesIds) ? $title : '', ARRAY_FILTER_USE_BOTH));
-    // }
+        return join(', ', $filteredTitles);
+    }
 
     public function registerMediaCollections(): void
     {

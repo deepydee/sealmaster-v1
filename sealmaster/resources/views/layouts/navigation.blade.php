@@ -46,10 +46,12 @@
                     @include('svg.home')
                     {{ __('Dashboard') }}
                 </x-nav-link>
-                <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile')">
+                @can('viewAny', \App\Models\User::class)
+                <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
                     @include('svg.users')
                     {{ __('Users') }}
                 </x-nav-link>
+                @endcan
                 @can('viewAny', \App\Models\Slide::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -161,10 +163,12 @@
                     @include('svg.home')
                     {{ __('Dashboard') }}
                 </x-nav-link>
-                <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')">
+                @can('viewAny', \App\Models\User::class)
+                <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
                     @include('svg.users')
                     {{ __('Users') }}
                 </x-nav-link>
+                @endcan
                 @can('viewAny', \App\Models\Slide::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">

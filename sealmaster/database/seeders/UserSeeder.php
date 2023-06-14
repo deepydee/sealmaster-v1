@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $roleManager = Role::where('title', 'manager')->first()->id;
 
         $admin = User::factory()->create([
-            'email' => 'odmen@odmen.com',
+            'email' => 'admin@admin.com',
         ]);
         $admin->roles()->attach([$roleAdmin, $roleEditor, $roleManager]);
 
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         $editor->roles()->attach($roleEditor);
 
         $manager = User::factory()->create([
-            'email' => 'manager@namager.com',
+            'email' => 'manager@manager.com',
         ]);
         $manager->roles()->attach($roleManager);
 

@@ -130,10 +130,10 @@
                                     @endcan
                                 </x-table.cell>
                                 <x-table.cell>
-                                    {{ $post->title }}
+                                    <a href="{{route('blog.page', $post->slug)}}" target="_blank">{{ $post->title }}</a>
                                 </x-table.cell>
                                 <x-table.cell>
-                                    {{ $post->user->name }}
+                                    {{ $post->user->name ?? 'Анонимный автор' }}
                                 </x-table.cell>
                                 <x-table.cell>
                                     {{ $post->category->title }}
