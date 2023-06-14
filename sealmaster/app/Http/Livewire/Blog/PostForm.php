@@ -88,7 +88,15 @@ class PostForm extends Component
         $this->listsForFields['tags'] = BlogTag::pluck('title', 'id')
             ->toArray();
 
-        $this->listsForFields['users'] = User::whereRelation('roles', 'title', 'editor')->pluck('name', 'id')
+        $this->listsForFields['users'] = User::whereRelation('roles', 'title', 'editor');
+
+        if (! auth()->user()->isAdministrator()) {
+            $this->listsForFields['users'] = $this->listsForFields['users']
+                ->where('id', auth()->id());
+        }
+
+        $this->listsForFields['users'] = $this->listsForFields['users']
+            ->pluck('name', 'id')
             ->toArray();
     }
 
@@ -123,7 +131,7 @@ class PostForm extends Component
 
     public function render()
     {
-        $this->authorize('view', $this->post);
+        $this->authorize('create', $this->post);
 
         return view('livewire.blog.post-form');
     }
