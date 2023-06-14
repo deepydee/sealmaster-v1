@@ -20,7 +20,7 @@ class PostForm extends Component
     public $thumbnail;
     public bool $editing = false;
     public bool $updateThumb = false;
-    public array $tags = [];
+    public ?array $tags = [];
     public array $listsForFields = [];
 
     protected $casts = [
@@ -38,7 +38,7 @@ class PostForm extends Component
             'post.content' => ['required', 'string'],
             'post.blog_category_id' => ['required', 'integer', 'exists:blog_categories,id'],
             'post.user_id' => ['required', 'integer', 'exists:users,id'],
-            'tags' => ['required', 'array'],
+            'tags' => ['nullable', 'array'],
             'post.is_published' => ['integer'],
             'thumbnail' => ['nullable', 'image'],
         ];
