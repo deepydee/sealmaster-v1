@@ -173,6 +173,8 @@ class ProductForm extends Component
 
     public function render()
     {
+        $this->authorize('create', \App\Models\Product::class);
+
         return view('livewire.products.product-form');
     }
 }

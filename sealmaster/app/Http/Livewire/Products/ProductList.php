@@ -111,6 +111,8 @@ class ProductList extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', \App\Models\Product::class);
+
         $products = Product::query()
             ->select(['products.id', 'products.slug', 'products.title', 'products.code', 'categories.id as categoryId', 'categories.title as categoryTitle',])
             ->join('category_product', 'products.id', '=', 'category_product.product_id')

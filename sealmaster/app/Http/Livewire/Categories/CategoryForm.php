@@ -114,6 +114,8 @@ class CategoryForm extends Component
 
     public function render()
     {
+        $this->authorize('create', \App\Models\Category::class);
+
         return view('livewire.categories.category-form');
     }
 }

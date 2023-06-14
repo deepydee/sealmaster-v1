@@ -29,6 +29,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
+        $this->authorize('update', $category);
+
         DB::transaction(function () use ($request, $category) {
             if (!$request->parent_id) {
                 $category->saveAsRoot();
@@ -61,6 +63,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->authorize('delete', $category);
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')

@@ -43,7 +43,7 @@ class CategoryPolicy
             return Response::allow();
         }
 
-        return Response::deny();
+        return Response::denyAsNotFound();
     }
 
     /**

@@ -109,6 +109,7 @@ class BlogCategories extends Component
 
         $this->dispatchBrowserEvent('notify', $message);
     }
+
     public function deleteConfirm($method, $id = null)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
