@@ -135,6 +135,10 @@ class BlogPosts extends Component
             ->join('blog_categories', 'blog_categories.id', '=', 'blog_posts.blog_category_id')
             ->with('category', 'tags', 'user', 'media');
 
+        if (! auth()->user()->isAdministrator()) {
+            $posts = $posts->where('user_id', auth()->id());
+        }
+
         // $posts = Post::with('category', 'tags', 'user', 'media'); //->orderBy($this->sortColumn, $this->sortDirection);
 
         foreach ($this->searchColumns as $column => $value) {

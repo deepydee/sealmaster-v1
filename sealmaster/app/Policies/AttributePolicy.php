@@ -21,6 +21,13 @@ class AttributePolicy
         return null;
     }
 
+    public function viewAny(User $user): bool
+    {
+        $userRoles = $user->roles->pluck('id')->toArray();
+
+        return in_array(Role::IS_MANAGER, $userRoles);
+    }
+
     /**
      * Determine whether the user can create models.
      */

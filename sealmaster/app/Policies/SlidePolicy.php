@@ -24,9 +24,13 @@ class SlidePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user): Response
     {
-        return $user->isAdministrator();
+        if ($user->isAdministrator()) {
+            return Response::allow();
+        }
+
+        return Response::denyWithStatus(404);
     }
 
     /**

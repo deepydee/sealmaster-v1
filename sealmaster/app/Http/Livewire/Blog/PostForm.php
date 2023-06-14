@@ -123,6 +123,8 @@ class PostForm extends Component
 
     public function render()
     {
+        $this->authorize('view', $this->post);
+
         return view('livewire.blog.post-form');
     }
 }

@@ -8,11 +8,23 @@ use Illuminate\Auth\Access\Response;
 class UserPolicy
 {
     /**
+     * Perform pre-authorization checks.
+     */
+    public function before(User $user, string $ability): bool|null
+    {
+        if ($user->isAdministrator()) {
+            return true;
+        }
+
+        return null;
+    }
+
+    /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isAdministrator();
     }
 
     /**
@@ -20,7 +32,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -28,7 +40,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -36,7 +48,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -44,6 +56,6 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        //
+        return $user->isAdministrator();
     }
 }

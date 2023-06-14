@@ -143,6 +143,8 @@ class BlogTags extends Component
 
     public function render(): View
     {
+        $this->authorize('viewAny', \App\Models\BlogTag::class);
+
         $tags = Tag::orderBy($this->sortColumn, $this->sortDirection)
             ->paginate($this->perPage);
 

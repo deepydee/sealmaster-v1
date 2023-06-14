@@ -121,6 +121,7 @@
                             </x-slot>
 
                             @forelse($posts as $post)
+                            @can('view', $post)
                             <x-table.row>
                                 <x-table.cell>
                                     @can('delete', $post)
@@ -175,6 +176,7 @@
                                     @endcan
                                 </x-table.cell>
                             </x-table.row>
+                            @endcan
                             @empty
                             <x-table.row>
                                 <x-table.cell colspan="4" class="grow">

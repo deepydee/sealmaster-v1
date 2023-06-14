@@ -50,6 +50,7 @@
                     @include('svg.users')
                     {{ __('Users') }}
                 </x-nav-link>
+                @can('viewAny', \App\Models\Slide::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -62,6 +63,8 @@
                     @include('svg.slider')
                     {{ __('Slider') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\BlogPost::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -83,6 +86,8 @@
                     @include('svg.post')
                     {{ __('Posts') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Category::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -95,14 +100,19 @@
                     @include('svg.category')
                     {{ __('Categories') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Attribute::class)
                 <x-nav-link :href="route('admin.attributes.index')" :active="request()->routeIs('admin.attributes.*')">
                     @include('svg.tag')
                     {{ __('Attributes') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Product::class)
                 <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
                     @include('svg.post')
                     {{ __('Products') }}
                 </x-nav-link>
+                @endcan
             </nav>
         </div>
         <div class="flex-shrink-0 flex flex-wrap justify-between border-t border-gray-200 p-4">
@@ -155,6 +165,7 @@
                     @include('svg.users')
                     {{ __('Users') }}
                 </x-nav-link>
+                @can('viewAny', \App\Models\Slide::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -167,6 +178,8 @@
                     @include('svg.slider')
                     {{ __('Slider') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\BlogPost::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -188,6 +201,8 @@
                     @include('svg.post')
                     {{ __('Posts') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Category::class)
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -200,14 +215,19 @@
                     @include('svg.category')
                     {{ __('Categories') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Attribute::class)
                 <x-nav-link :href="route('admin.attributes.index')" :active="request()->routeIs('admin.attributes.*')">
                     @include('svg.tag')
                     {{ __('Attributes') }}
                 </x-nav-link>
+                @endcan
+                @can('viewAny', \App\Models\Product::class)
                 <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
                     @include('svg.post')
                     {{ __('Products') }}
                 </x-nav-link>
+                @endcan
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-nav-link :href="route('logout')" class="hover:text-red-700 transition-all" onclick="event.preventDefault();

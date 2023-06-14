@@ -144,6 +144,8 @@ class BlogCategories extends Component
 
     public function render(): View
     {
+        $this->authorize('viewAny', \App\Models\BlogCategory::class);
+
         $cats = Category::orderBy($this->sortColumn, $this->sortDirection)
             ->paginate($this->perPage);
 

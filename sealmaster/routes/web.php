@@ -43,7 +43,7 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('search', [BlogSearchController::class, 'index'])->name('search');
 });
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::view('dashboard', 'dashboard')->middleware('verified')->name('dashboard');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');

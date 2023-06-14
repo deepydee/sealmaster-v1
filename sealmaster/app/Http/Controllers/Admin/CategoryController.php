@@ -15,6 +15,8 @@ class CategoryController extends Controller
      */
     public function index(): View
     {
+        $this->authorize('viewAny', \App\Models\Category::class);
+
         $categories = Category::defaultOrder()
             ->get()
             ->toTree();

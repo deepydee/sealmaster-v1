@@ -21,6 +21,17 @@ class BlogTagPolicy
         return null;
     }
 
+     public function viewAny(User $user): Response
+    {
+        $userRoles = $user->roles->pluck('id')->toArray();
+
+        if (in_array(Role::IS_EDITOR, $userRoles)) {
+            return Response::allow();
+        }
+
+        return Response::denyAsNotFound();
+    }
+
     /**
      * Determine whether the user can create models.
      */

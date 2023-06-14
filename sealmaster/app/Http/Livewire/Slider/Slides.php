@@ -68,7 +68,7 @@ class Slides extends Component
 
     public function render()
     {
-        $this->authorize('viewAny', [auth()->user()]);
+        $this->authorize('viewAny', \App\Models\Slide::class);
 
         $slides = Slide::with('media')->orderBy('position')->paginate($this->perPage);
         $links = $slides->links();
