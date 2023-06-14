@@ -66,7 +66,7 @@
                             <img src="{{ isset($blogPost->user) ? $blogPost->user->getFirstMediaURL('avatars', 'thumb') : '' }}" width="216"
                                 height="216" class="rounded-circle img-responsive me-2 mb-3 post-image">
                             <h3 class="fw-bold" itemprop="author">{{ isset($blogPost->user) ? $blogPost->user->name : 'Анонимный автор' }}</h3>
-                            <span class="text-muted">Кандидат технических наук, член наблюдательного совета ООН</span>
+                            <span class="text-muted">{{ $blogPost->user->description ?? 'ТОО "СИЛМАСТЕР"' }}</span>
                         </span>
                     </div>
                     <aside class="col-12 text-start mb-4 categories-list">

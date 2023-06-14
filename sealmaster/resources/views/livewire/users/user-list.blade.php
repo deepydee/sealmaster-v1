@@ -12,18 +12,19 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <x-alert />
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @can('create', \App\Models\User::class)
-                    <x-primary-button wire:click.prevent="openModal" x-data=""
-                        x-on:click.prevent="$dispatch('open-modal', 'add-category')" class="mb-4">
-                        {{ __('Add') }}
-                    </x-primary-button>
+                    <div class="mb-4">
+                        @can('create', \App\Models\User::class)
+                        <a href="{{ route('admin.users.create') }}"
+                            class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent hover:bg-gray-700 cursor-pointer">
+                            {{ __('Add') }}
+                        </a>
 
-                    <x-remove-button :disabled="!$this->selectedCount" wire:click="deleteConfirm('deleteSelected')"
-                        wire:loading.attr="disabled">
-                        {{ __('Delete Selected') }}
-                    </x-remove-button>
-                    @endcan
-
+                        <x-remove-button :disabled="!$this->selectedCount" wire:click="deleteConfirm('deleteSelected')"
+                            wire:loading.attr="disabled">
+                            {{ __('Delete Selected') }}
+                        </x-remove-button>
+                        @endcan
+                    </div>
                     <x-table>
                         <x-slot:heading>
                             <x-table.heading>
@@ -81,18 +82,17 @@
                                 </x-table.cell>
                                 <x-table.cell>
                                     <img src="{{ $user->getFirstMediaURL('avatars', 'thumb') }}"
-                                    alt="Front of women's basic tee in heather gray."
-                                    class="flex-none w-10 object-center object-cover bg-gray-100 rounded-full">
+                                        alt="Front of women's basic tee in heather gray."
+                                        class="flex-none w-10 object-center object-cover bg-gray-100 rounded-full">
                                 </x-table.cell>
                                 <x-table.cell>
                                     {{ $user->getRoles() }}
                                 </x-table.cell>
                                 <x-table.cell>
                                     @can('update', $user)
-                                    <span wire:click="editCategory({{ $user->id }})" class="mr-2"
-                                        title="{{ __('Edit') }}">
-                                        @include('svg.btn-edit')
-                                    </span>
+                                    <a href="{{ route('admin.users.edit', $user) }}" title="{{ __('Edit') }}">
+                                         @include('svg.btn-edit')
+                                    </a>
                                     @endcan
                                     @can('delete', $user)
                                     <span wire:click="deleteConfirm('delete', {{ $user->id }})"
