@@ -102,32 +102,6 @@
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
     <div class="modal fade" id="modalAskPhoneCall" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         role="dialog" aria-labelledby="modalAskPhoneCallTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAskPhoneCallTitleId">Перезвоните мне</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="#">
-                        <p>Оставьте контактные данные и наш менеджер перезвонит и ответит на все интересующие Вас
-                            вопросы</p>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="userName" id="userName"
-                                placeholder="Имя (необязательно)">
-                            <label for="userName">Имя (необязательно)</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" name="userPhone" id="userPhone"
-                                placeholder="+7(747)123-45-67" required>
-                            <label for="userPhone">Телефон</label>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Заказать звонок</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @livewire('header-form')
     </div>
 </footer>
