@@ -1,7 +1,4 @@
-<form action="{{ route('contact-form.process') }}" method="POST">
-    @csrf
-
-    @include('admin.layouts.chunks.alerts')
+<form>
     <div class="mb-3">
       <label for="setUserContactPhone" class="form-label">Телефон</label>
       <input type="tel"

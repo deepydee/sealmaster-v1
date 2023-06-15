@@ -18708,6 +18708,60 @@
      
 }
 
+    namespace Lunaweb\RecaptchaV3\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class RecaptchaV3 {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function verify($token, $action = null)
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->verify($token, $action);
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function sitekey()
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->sitekey();
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function initJs()
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->initJs();
+        }
+                    /**
+         * 
+         *
+         * @param $action
+         * @static 
+         */ 
+        public static function field($action, $name = 'g-recaptcha-response')
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->field($action, $name);
+        }
+         
+    }
+     
+}
+
     namespace Livewire { 
             /**
      * 
@@ -23576,6 +23630,7 @@ namespace  {
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Image extends \Intervention\Image\Facades\Image {}
+            class RecaptchaV3 extends \Lunaweb\RecaptchaV3\Facades\RecaptchaV3 {}
             class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      

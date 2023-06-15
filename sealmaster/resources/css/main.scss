@@ -231,7 +231,7 @@ body {
   }
 }
 
-.carousel-inner {
+.carousel-main .carousel-inner {
     height: 100vh;
 }
 
@@ -1084,3 +1084,5 @@ body {
 .mr-3 {
     margin-right: 1rem!important;
 }
+
+[x-cloak] { display: none }

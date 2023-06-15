@@ -1,6 +1,10 @@
 // import * as bootstrap from 'bootstrap';
-
+import Alpine from 'alpinejs';
 import { Modal, Carousel } from 'bootstrap';
+
+window.Alpine = Alpine;
+
+Alpine.start();
 
 window.Carousel = Carousel;
 

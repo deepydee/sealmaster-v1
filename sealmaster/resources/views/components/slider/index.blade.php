@@ -1,6 +1,6 @@
 @props(['target'])
 
-<div id="carousel" class="carousel slide" data-bs-ride="true">
+<div id="carousel" class="carousel carousel-main slide" data-bs-ride="true">
     <ol class="carousel-indicators d-none d-md-flex">
         {{ $header }}
     </ol>
