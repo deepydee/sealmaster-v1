@@ -84,7 +84,8 @@ class UserList extends Component
     {
         $this->authorize('viewAny', \App\Models\User::class);
 
-        $usrs = User::orderBy($this->sortColumn, $this->sortDirection)
+        $usrs = User::with('media', 'roles')
+            ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate($this->perPage);
 
         $links = $usrs->links();

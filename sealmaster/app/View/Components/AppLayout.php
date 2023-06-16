@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Callback;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 

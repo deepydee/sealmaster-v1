@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Callback extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'phone',
+        'name',
+        'message',
+    ];
 }

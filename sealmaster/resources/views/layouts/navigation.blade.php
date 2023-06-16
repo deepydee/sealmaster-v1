@@ -51,6 +51,11 @@
                     @include('svg.users')
                     {{ __('Users') }}
                 </x-nav-link>
+                <x-nav-link :href="route('admin.messages.index')" :active="request()->routeIs('admin.messages.*')">
+                    @include('svg.messages')
+                    {{ __('Messages') }}
+                    <span class="bg-gray-100 text-gray-900 hidden ml-2 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block" x-state:on="Current" x-state:off="Default" x-state-description="Current: &quot;bg-purple-100 text-purple-600&quot;, Default: &quot;bg-gray-100 text-gray-900&quot;">{{ $unreadMessages }}</span>
+                </x-nav-link>
                 @endcan
                 @can('viewAny', \App\Models\Slide::class)
                 <div class="relative">
@@ -167,6 +172,11 @@
                 <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
                     @include('svg.users')
                     {{ __('Users') }}
+                </x-nav-link>
+                <x-nav-link :href="route('admin.messages.index')" :active="request()->routeIs('admin.messages.*')">
+                    @include('svg.messages')
+                    {{ __('Messages') }}
+                    <span class="bg-gray-100 text-gray-900 hidden ml-2 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block" x-state:on="Current" x-state:off="Default" x-state-description="Current: &quot;bg-purple-100 text-purple-600&quot;, Default: &quot;bg-gray-100 text-gray-900&quot;">{{ $unreadMessages }}</span>
                 </x-nav-link>
                 @endcan
                 @can('viewAny', \App\Models\Slide::class)

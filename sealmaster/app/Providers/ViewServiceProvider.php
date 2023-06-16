@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\BlogTag;
+use App\Models\Callback;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades;
@@ -50,10 +51,20 @@ class ViewServiceProvider extends ServiceProvider
             'front.sidebar',
             function (View $view) use ($blogCategories, $blogTags) {
 
-
             $view->with([
                 'categories' => $blogCategories,
                 'tags' =>  $blogTags,
+            ]);
+        });
+
+        $unreadMessages = Callback::where('is_read', false)->count();
+
+        Facades\View::composer(
+            'layouts.navigation',
+            function (View $view) use ($unreadMessages) {
+
+            $view->with([
+                'unreadMessages' => $unreadMessages,
             ]);
         });
 

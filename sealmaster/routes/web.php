@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogTagController;
@@ -65,6 +66,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('/users', UserList::class)->name('users.index');
         Route::get('/users/create', UserForm::class)->name('users.create');
         Route::get('/users/{user}', UserForm::class)->name('users.edit');
+
+        Route::view('/messages', 'messages.index')->name('messages.index');
 
         Route::get('/categories/create/{category?}', CategoryForm::class)
             ->name('categories.create');
