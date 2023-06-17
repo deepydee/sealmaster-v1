@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /login
+Disallow: /admin/
+
+Sitemap: https://localhost:8000/sitemap.xml

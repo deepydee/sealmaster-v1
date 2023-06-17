@@ -1,0 +1,137 @@
+@import "flatpickr/dist/flatpickr.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* latin */
+@font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.bunny.net/figtree/files/figtree-latin-400-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+
+/* latin-ext */
+@font-face {
+font-family: 'Figtree';
+font-style: normal;
+font-weight: 400;
+font-stretch: 100%;
+font-display: swap;
+src: url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-400-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-400-normal.woff) format('woff');
+unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+font-family: 'Figtree';
+font-style: normal;
+font-weight: 500;
+font-stretch: 100%;
+font-display: swap;
+src: url(https://fonts.bunny.net/figtree/files/figtree-latin-500-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-500-normal.woff) format('woff');
+unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+font-family: 'Figtree';
+font-style: normal;
+font-weight: 500;
+font-stretch: 100%;
+font-display: swap;
+src: url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-500-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-500-normal.woff) format('woff');
+unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+font-family: 'Figtree';
+font-style: normal;
+font-weight: 600;
+font-stretch: 100%;
+font-display: swap;
+src: url(https://fonts.bunny.net/figtree/files/figtree-latin-600-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-600-normal.woff) format('woff');
+unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+font-family: 'Figtree';
+font-style: normal;
+font-weight: 600;
+font-stretch: 100%;
+font-display: swap;
+src: url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-600-normal.woff2) format('woff2'), url(https://fonts.bunny.net/figtree/files/figtree-latin-ext-600-normal.woff) format('woff');
+unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+
+.toggle-checkbox:checked {
+    @apply right-0 border-green-400;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    @apply bg-green-400;
+}
+
+.custom-file-button input[type=file]::-webkit-file-upload-button {
+    display: none;
+}
+.custom-file-button input[type=file]::file-selector-button {
+    display: none;
+}
+.custom-file-button:hover label {
+    background-color: #dde0e3;
+    cursor: pointer;
+}
+
+.ck {
+    --ck-border-radius: 0.375rem;
+}
+
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+
+.ck-content ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ck-content p {
+    margin-bottom: 16px;
+}
+
+.ck-content h1,
+.ck-content h2,
+.ck-content h3,
+.ck-content h4,
+.ck-content h5,
+.ck-content h6 {
+    margin-bottom: 8px;
+    font-size: calc(1.3rem + .6vw);
+}
+
+.choices__inner {
+    background-color: #fff;
+    border-radius: 0.375rem;
+}
+
+.choices__input:focus {
+    @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm
+}
+
+.choices__list--multiple .choices__item {
+    background-color: #00bcd4;
+    border: 1px solid #00a5bb;
+
+    @apply bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150
+}
+
+[x-cloak] { display: none }
