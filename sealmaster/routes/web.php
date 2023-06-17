@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ImageController;
-use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogTagController;

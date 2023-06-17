@@ -18,7 +18,8 @@
         "livewire/livewire": "^2.12",
         "openspout/openspout": "^4.14",
         "power-components/livewire-powergrid": "^4.5",
-        "spatie/laravel-medialibrary": "^10.0.0"
+        "spatie/laravel-medialibrary": "^10.0.0",
+        "spatie/laravel-sitemap": "^6.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
