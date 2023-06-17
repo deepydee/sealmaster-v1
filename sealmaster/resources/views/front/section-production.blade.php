@@ -32,85 +32,23 @@
     </div>
   </div>
   <div class="row row-cols-md-4 g-2 g-sm-4">
+
+    @if ($dmh[0])
+
+    @foreach ($dmh[0]->children as $item)
     <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/1.png" alt="Грязесъемники">
-          <div class="card-body">
-            <h4 class="card-title text-center">Грязесъемники</h4>
+        <a href="{{ $item->path }}" class="card-production">
+          <div class="card">
+            <img class="card-img-top" src="{{ $item->getFirstMediaUrl('categories', 'thumb') }}" alt="{{ $item->title }}">
+            <div class="card-body">
+              <h4 class="card-title text-center">{{ $item->title }}</h4>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/2.png" alt="Уплотнения штока">
-          <div class="card-body">
-            <h4 class="card-title text-center">Уплотнения штока</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/3.png" alt="Уплотнения поршня">
-          <div class="card-body">
-            <h4 class="card-title text-center">Уплотнения поршня</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/oporn.webp" alt="Опорные кольца">
-          <div class="card-body">
-            <h4 class="card-title text-center">Опорные кольца</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/5.png" alt="Плоские уплотнения">
-          <div class="card-body">
-            <h4 class="card-title text-center">Плоские уплотнения</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/6.png" alt="Защитные кольца">
-          <div class="card-body">
-            <h4 class="card-title text-center">Защитные кольца</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/7.png" alt="Направляющие кольца">
-          <div class="card-body">
-            <h4 class="card-title text-center">Направляющие кольца</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-6 col-md-3">
-      <a href="#" class="card-production">
-        <div class="card">
-          <img class="card-img-top" src="storage/img/production/8.png" alt="Роторные уплотнения">
-          <div class="card-body">
-            <h4 class="card-title text-center">Роторные уплотнения</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-    <a href="#">Перейти к разделу</a>
+        </a>
+      </div>
+    @endforeach
+
+    @endif
+
+    <a href="{{ $dmh[0]->path }}">Перейти к разделу</a>
   </div>

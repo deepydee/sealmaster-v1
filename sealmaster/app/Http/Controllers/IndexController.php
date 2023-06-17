@@ -10,6 +10,10 @@ class IndexController extends Controller
 {
     public function index(): View
     {
+        $dmh = Category::whereSlug('manzhety-i-uplotneniya')
+            ->with('children.media')
+            ->get();
+
         $goods = Category::whereSlug('tovary')
             ->with('children.media')
             ->get();
@@ -27,6 +31,6 @@ class IndexController extends Controller
             ->orderBy('position', 'asc')
             ->get();
 
-        return view('index', compact('goods', 'repair', 'spareParts', 'slides'));
+        return view('index', compact('goods', 'repair', 'spareParts', 'slides', 'dmh'));
     }
 }
