@@ -8,7 +8,6 @@
     class="w-100 rounded mb-4"
     alt="Boat on Calm Water"
     />
-    <figcaption class="blockquote-footer">MDN Logo</figcaption>
     </figure>
 
     <figure class="text-end">
@@ -17,7 +16,6 @@
         class="w-100 rounded mb-4"
         alt="Wintry Mountain Landscape"
     />
-    <figcaption class="blockquote-footer">Ремонт гидромолота</figcaption>
     </figure>
 </div>
 
@@ -28,7 +26,6 @@
         class="w-100 rounded mb-4"
         alt="Mountains in the Clouds"
     />
-    <figcaption class="blockquote-footer">Ремонт гидроцилиндра</figcaption>
     </figure>
     <figure class="text-end">
     <img
@@ -36,7 +33,6 @@
         class="w-100 rounded mb-4"
         alt="Boat on Calm Water"
     />
-    <figcaption class="blockquote-footer">Ремонт гидроцилиндра</figcaption>
     </figure>
 </div>
 
@@ -47,7 +43,6 @@
         class="w-100 rounded mb-4"
         alt="Waves at Sea"
     />
-    <figcaption class="blockquote-footer">Описание</figcaption>
     </figure>
     <figure class="text-end">
     <img
@@ -55,7 +50,6 @@
         class="w-100 rounded mb-4"
         alt="Yosemite National Park"
     />
-    <figcaption class="blockquote-footer">Описание</figcaption>
     </figure>
 </div>
 
@@ -66,7 +60,6 @@
     class="w-100 rounded mb-4"
     alt="Boat on Calm Water"
     />
-    <figcaption class="blockquote-footer">MDN Logo</figcaption>
     </figure>
 
     <figure class="text-end">
@@ -75,7 +68,6 @@
         class="w-100 rounded mb-4"
         alt="Wintry Mountain Landscape"
     />
-    <figcaption class="blockquote-footer">Ремонт гидромолота</figcaption>
     </figure>
 </div>
 
@@ -86,7 +78,6 @@
         class="w-100 rounded mb-4"
         alt="Mountains in the Clouds"
     />
-    <figcaption class="blockquote-footer">Ремонт гидроцилиндра</figcaption>
     </figure>
     <figure class="text-end">
     <img
@@ -94,7 +85,6 @@
         class="w-100 rounded mb-4"
         alt="Boat on Calm Water"
     />
-    <figcaption class="blockquote-footer">Ремонт гидроцилиндра</figcaption>
     </figure>
 </div>
 
@@ -105,7 +95,6 @@
         class="w-100 rounded mb-4"
         alt="Waves at Sea"
     />
-    <figcaption class="blockquote-footer">Описание</figcaption>
     </figure>
     <figure class="text-end">
     <img
@@ -113,7 +102,6 @@
         class="w-100 rounded mb-4"
         alt="Yosemite National Park"
     />
-    <figcaption class="blockquote-footer">Описание</figcaption>
     </figure>
 </div>
 </div>
