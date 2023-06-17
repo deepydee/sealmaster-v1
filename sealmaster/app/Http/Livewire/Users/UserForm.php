@@ -25,7 +25,7 @@ class UserForm extends Component
     {
         return [
             'user.name' => ['required', 'string', 'max:255'],
-            'user.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'user.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
             'user.password' => ['required', Rules\Password::defaults()],
             'user.description' => ['nullable', 'string', 'max:255'],
             'thumbnail' => ['nullable', 'image'],
