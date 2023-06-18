@@ -3,23 +3,13 @@
 namespace App\Services;
 
 use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
-use Spatie\MediaLibrary\MediaCollections\Filesystem;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\TinyPlaceholderGenerator;
-use Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\WidthCalculator;
 use Spatie\MediaLibrary\Support\ImageFactory;
 use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
+use Spatie\MediaLibrary\ResponsiveImages\ResponsiveImage;
 
 class NonOptimizedResponsiveImageGenerator extends ResponsiveImageGenerator
 {
-    public function __construct(
-        protected Filesystem $filesystem,
-        protected WidthCalculator $widthCalculator,
-        protected TinyPlaceholderGenerator $tinyPlaceholderGenerator
-    ) {
-        parent::__construct($filesystem, $widthCalculator, $tinyPlaceholderGenerator);
-    }
-
     public function generateResponsiveImage(
         Media $media,
         string $baseImage,

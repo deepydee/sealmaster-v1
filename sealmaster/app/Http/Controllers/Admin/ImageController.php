@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\TemporaryUpload;
 use Illuminate\Http\JsonResponse;
-use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
-// use Arr\Services\NonOptimizedResponsiveImageGenerator;
+// use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
+use App\Services\NonOptimizedResponsiveImageGenerator;
 
 class ImageController extends Controller
 {
@@ -20,7 +20,7 @@ class ImageController extends Controller
         $newUrls = [];
         $newUrls['default'] = $mediaItems->getUrl();
 
-        $responsiveImageGenerator = app(ResponsiveImageGenerator::class);
+        $responsiveImageGenerator = app(NonOptimizedResponsiveImageGenerator::class);
         $responsiveImageGenerator->generateResponsiveImages($mediaItems);
 
         $srcSet = explode(', ', $mediaItems->getSrcset());
