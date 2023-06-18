@@ -26,10 +26,12 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $categories = Category::defaultOrder()
+        $categories = cache()->remember('vsp-categories', 60 * 60 * 24, function() {
+            return Category::defaultOrder()
             ->with('children', 'parent')
             ->get()
             ->toTree();
+        });
 
         Facades\View::composer(
             ['front.dynamic-menu', 'front.footer'],
@@ -40,12 +42,16 @@ class ViewServiceProvider extends ServiceProvider
                 ]);
         });
 
-        $blogCategories = BlogCategory::select('title', 'slug')
+        $blogCategories = cache()->remember('vsp-blogCategories', 60 * 60 * 24, function() {
+            return BlogCategory::select('title', 'slug')
             ->withCount('posts')
             ->orderBy('posts_count', 'desc')
             ->get();
+        });
 
-        $blogTags = BlogTag::all();
+        $blogTags = cache()->remember('vsp-blogTags', 60 * 60 * 24, function() {
+            return BlogTag::all();
+        });
 
         Facades\View::composer(
             'front.sidebar',
@@ -68,10 +74,12 @@ class ViewServiceProvider extends ServiceProvider
             ]);
         });
 
-        $popularPosts = BlogPost::orderBy('views', 'desc')
+        $popularPosts = cache()->remember('vsp-popularPosts', 60 * 60 * 24, function() {
+            return BlogPost::orderBy('views', 'desc')
             ->with('media', 'category:id,slug,title', 'user:id,name')
             ->limit(4)
             ->get();
+        });
 
         Facades\View::composer(
             'front.popular-posts',

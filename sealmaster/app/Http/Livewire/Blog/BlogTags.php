@@ -103,6 +103,8 @@ class BlogTags extends Component
 
         $this->tag->save();
 
+        cache()->forget('vsp-blogTags');
+
         $this->resetValidation();
         $this->reset('showModal', 'editedTagId');
 
@@ -123,7 +125,10 @@ class BlogTags extends Component
     public function delete(Tag $tag)
     {
         $message = "Тег '{$tag->title}' успешно удален";
+
         $tag->delete();
+
+        cache()->forget('vsp-blogTags');
 
         $this->dispatchBrowserEvent('notify', $message);
     }
@@ -132,7 +137,10 @@ class BlogTags extends Component
     {
         $tags = Tag::whereIn('id', $this->selected)->get();
         $tagCount = count($tags);
+
         $tags->each->delete();
+        cache()->forget('vsp-blogTags');
+
         $message = "$tagCount тегов успешно удалено";
 
         $this->dispatchBrowserEvent('notify', $message);

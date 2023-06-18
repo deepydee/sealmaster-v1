@@ -102,6 +102,7 @@ class CategoryForm extends Component
             $this->updateThumb = false;
         }
 
+        cache()->forget('vsp-categories');
 
         $message = $this->editing
             ? "Категория '{$this->category->title}' успешно отредактирована"

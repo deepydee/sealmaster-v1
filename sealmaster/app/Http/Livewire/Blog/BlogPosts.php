@@ -75,6 +75,9 @@ class BlogPosts extends Component
             'is_published' => $this->active[$post->id],
         ]);
 
+        cache()->forget('blog-posts');
+        cache()->forget('vsp-popularPosts');
+
         $message = $post->is_published
             ? "Статья '{$post->title}' опубликована"
             : "Статья '{$post->title}' снята с публикации";
@@ -112,6 +115,9 @@ class BlogPosts extends Component
         $message = "Статья '{$post->title}' успешно удалена";
         $post->delete();
 
+        cache()->forget('blog-posts');
+        cache()->forget('vsp-popularPosts');
+
         $this->dispatchBrowserEvent('notify', $message);
     }
 
@@ -121,6 +127,9 @@ class BlogPosts extends Component
         $postCount = count($posts);
         $posts->each->delete();
         $message = "Удалено $postCount статей";
+
+        cache()->forget('blog-posts');
+        cache()->forget('vsp-popularPosts');
 
         $this->dispatchBrowserEvent('notify', $message);
 

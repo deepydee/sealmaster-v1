@@ -35,12 +35,10 @@ class Slides extends Component
                 Slide::whereId($item['value'])->update([
                     'position' => $order,
                 ]);
-
-                // $message = "Порядок отображения для слайда '{$slide['title']}' успешно изменен на {$slide['position']}";
-
-                // $this->dispatchBrowserEvent('notify', $message);
             }
         }
+
+        cache()->forget('slides');
     }
 
     public function deleteConfirm($method, $id = null)
@@ -60,6 +58,8 @@ class Slides extends Component
 
         $product = Slide::findOrFail($id);
         $product->delete();
+
+        cache()->forget('slides');
 
         $message = "Слайд '{$product->title}' успешно удален";
 

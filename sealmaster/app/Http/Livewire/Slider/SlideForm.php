@@ -86,6 +86,8 @@ class SlideForm extends Component
             $this->updateThumb = false;
         }
 
+        cache()->forget('slides');
+
         $message = $this->editing
         ? "Слайд '{$this->slide->title}' успешно отредактирован"
         : "Слайд '{$this->slide->title}' успешно создан";

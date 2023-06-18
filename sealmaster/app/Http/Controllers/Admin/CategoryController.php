@@ -54,6 +54,8 @@ class CategoryController extends Controller
 
         $category->update($request->validated());
 
+        cache()->forget('vsp-categories');
+
         return redirect()->route('admin.categories.index')
             ->with('message', "Категория \"{$request->title}\" успешно обновлена");
     }
@@ -66,6 +68,8 @@ class CategoryController extends Controller
         $this->authorize('delete', $category);
 
         $category->delete();
+
+        cache()->forget('vsp-categories');
 
         return redirect()->route('admin.categories.index')
             ->with('message', "Категория \"{$category->title}\" успешно удалена");

@@ -103,6 +103,8 @@ class BlogCategories extends Component
 
         $this->category->save();
 
+        cache()->forget('vsp-blogCategories');
+
         $this->resetValidation();
         $this->reset('showModal', 'editedCategoryId');
 
@@ -128,6 +130,8 @@ class BlogCategories extends Component
         $message = "Категория '{$category->title}' успешно удалена";
         $category->delete();
 
+        cache()->forget('vsp-blogCategories');
+
         $this->dispatchBrowserEvent('notify', $message);
     }
 
@@ -135,7 +139,11 @@ class BlogCategories extends Component
     {
         $categories = Category::whereIn('id', $this->selected)->get();
         $catCount = count($categories);
+
         $categories->each->delete();
+
+        cache()->forget('vsp-blogCategories');
+
         $message = "$catCount категорий успешно удалено";
 
         $this->dispatchBrowserEvent('notify', $message);

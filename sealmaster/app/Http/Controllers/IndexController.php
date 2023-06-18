@@ -10,26 +10,35 @@ class IndexController extends Controller
 {
     public function index(): View
     {
-        $dmh = Category::whereSlug('manzhety-i-uplotneniya')
+        $dmh = cache()->remember('dmh', 60 * 60 * 24, function() {
+            return Category::whereSlug('manzhety-i-uplotneniya')
             ->with('children.media')
             ->get();
+        });
 
-        $goods = Category::whereSlug('tovary')
+        $goods = cache()->remember('goods', 60 * 60 * 24, function() {
+            return Category::whereSlug('tovary')
             ->with('children.media')
             ->get();
+        });
 
-        $repair = Category::whereSlug('remont')
+        $repair = cache()->remember('repair', 60 * 60 * 24, function() {
+            return Category::whereSlug('remont')
             ->with('children.media')
             ->get();
+        });
 
-        $spareParts = Category::whereSlug('remkomplekty-gidrocilindrov')
+        $spareParts = cache()->remember('spareParts', 60 * 60 * 24, function() {
+            return Category::whereSlug('remkomplekty-gidrocilindrov')
             ->with('children.media')
             ->get();
+        });
 
-
-        $slides = Slide::with(['media'])
+        $slides = cache()->remember('slides', 60 * 60 * 24, function() {
+            return Slide::with(['media'])
             ->orderBy('position', 'asc')
             ->get();
+        });
 
         return view('index', compact('goods', 'repair', 'spareParts', 'slides', 'dmh'));
     }
