@@ -103,6 +103,10 @@ class CategoryForm extends Component
         }
 
         cache()->forget('vsp-categories');
+        cache()->forget('dmh');
+        cache()->forget('goods');
+        cache()->forget('repair');
+        cache()->forget('spareParts');
 
         $message = $this->editing
             ? "Категория '{$this->category->title}' успешно отредактирована"

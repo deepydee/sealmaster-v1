@@ -85,7 +85,8 @@ class Category extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             // ->format(Manipulations::FORMAT_WEBP)
-            ->fit(Manipulations::FIT_CONTAIN, 336, 336)
+            ->fit(Manipulations::FIT_CROP, 336, 336)
+            ->nonOptimized()
             ->nonQueued();
     }
 

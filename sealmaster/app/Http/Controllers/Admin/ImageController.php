@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TemporaryUpload;
 use Illuminate\Http\JsonResponse;
 use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
+// use Arr\Services\NonOptimizedResponsiveImageGenerator;
 
 class ImageController extends Controller
 {

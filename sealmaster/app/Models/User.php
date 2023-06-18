@@ -88,10 +88,12 @@ class User extends Authenticatable implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 36, 36)
+            ->nonOptimized()
             ->nonQueued();
         $this
             ->addMediaConversion('thumb_post')
             ->fit(Manipulations::FIT_CROP, 216, 216)
+            ->nonOptimized()
             ->nonQueued();
     }
 }

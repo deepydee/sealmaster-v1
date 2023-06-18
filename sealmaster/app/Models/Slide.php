@@ -47,6 +47,7 @@ class Slide extends Model implements HasMedia
             ->width(336)
             ->height(336)
             ->crop(Manipulations::CROP_RIGHT, 336, 336)
+            ->nonOptimized()
             ->nonQueued();
     }
 }
