@@ -121,6 +121,9 @@ class PostForm extends Component
         $this->post->tags()->sync($this->tags);
 
         cache()->forget('blog-posts');
+        cache()->forget('vsp-popularPosts');
+        cache()->forget('vsp-blogCategories');
+        cache()->forget('vsp-blogTags');
 
         $message = $this->editing
             ? "Статья '{$this->post->title}' успешно отредактирована"

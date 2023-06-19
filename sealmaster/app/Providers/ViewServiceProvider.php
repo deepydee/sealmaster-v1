@@ -44,13 +44,14 @@ class ViewServiceProvider extends ServiceProvider
 
         $blogCategories = cache()->remember('vsp-blogCategories', 60 * 60 * 24, function() {
             return BlogCategory::select('title', 'slug')
+            ->whereRelation('posts', 'is_published', 1)
             ->withCount('posts')
             ->orderBy('posts_count', 'desc')
             ->get();
         });
 
         $blogTags = cache()->remember('vsp-blogTags', 60 * 60 * 24, function() {
-            return BlogTag::all();
+            return BlogTag::whereRelation('posts', 'is_published', 1)->get();
         });
 
         Facades\View::composer(
@@ -75,7 +76,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         $popularPosts = cache()->remember('vsp-popularPosts', 60 * 60 * 24, function() {
-            return BlogPost::orderBy('views', 'desc')
+            return BlogPost::where('is_published', 1)
+			->orderBy('views', 'desc')
             ->with('media', 'category:id,slug,title', 'user:id,name')
             ->limit(4)
             ->get();

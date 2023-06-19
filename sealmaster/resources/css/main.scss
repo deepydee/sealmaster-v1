@@ -61,24 +61,16 @@
 
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
 body {
   font-family: 'Noto Sans';
   line-height: 1.6;
   color: var(--body-color);
-
-  &::-webkit-scrollbar-track {
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: #99bff7;
-  }
-  &:hover::-webkit-scrollbar-thumb {
-    background: rgb(123, 161, 221);
-  }
+  overflow-x: hidden;
 }
 
 .main-menu-header {
@@ -249,7 +241,7 @@ body {
     right: 0;
     left: 0;
     background: hsl(223, 82%, 11%);
-    opacity: 0.6;
+    opacity: 0.4;
     z-index: 1;
   }
 }

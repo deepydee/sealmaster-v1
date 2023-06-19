@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
 use Livewire\WithFileUploads;
-use \Spatie\MediaLibrary\ResponsiveImages\ResponsiveImageGenerator;
+use App\Services\NonOptimizedResponsiveImageGenerator;
 
 class SlideForm extends Component
 {
@@ -80,7 +80,7 @@ class SlideForm extends Component
                 ->addMedia($this->thumbnail)
                 ->toMediaCollection('slides');
 
-            $responsiveImageGenerator = app(ResponsiveImageGenerator::class);
+            $responsiveImageGenerator = app(NonOptimizedResponsiveImageGenerator::class);
             $responsiveImageGenerator->generateResponsiveImages($mediaItems);
 
             $this->updateThumb = false;

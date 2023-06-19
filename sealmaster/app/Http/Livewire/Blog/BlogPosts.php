@@ -77,6 +77,8 @@ class BlogPosts extends Component
 
         cache()->forget('blog-posts');
         cache()->forget('vsp-popularPosts');
+        cache()->forget('vsp-blogCategories');
+        cache()->forget('vsp-blogTags');
 
         $message = $post->is_published
             ? "Статья '{$post->title}' опубликована"

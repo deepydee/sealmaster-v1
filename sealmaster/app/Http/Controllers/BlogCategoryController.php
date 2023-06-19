@@ -9,6 +9,7 @@ class BlogCategoryController extends Controller
     function show (BlogCategory $blogCategory) {
 
         $posts = $blogCategory->posts()
+            ->where('is_published', 1)
             ->with('category', 'user:id,name', 'media')
             ->latest()
             ->paginate(4);
