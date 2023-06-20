@@ -45,7 +45,8 @@ class Product extends Model implements HasMedia
             ->addMediaConversion('thumb')
             ->width(336)
             ->height(336)
-            ->crop(Manipulations::CROP_RIGHT, 336, 336)
+            ->crop(Manipulations::CROP_CENTER, 336, 336)
+            ->nonOptimized()
             ->nonQueued();
     }
 
