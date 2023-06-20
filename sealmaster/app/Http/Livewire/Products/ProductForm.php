@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Redirector;
 use Livewire\WithFileUploads;
@@ -145,22 +146,21 @@ class ProductForm extends Component
 
         $category = Category::findOrFail($this->categoryId);
 
-        // dd($this->attributeValue, $this->attributes, $attributes, $category);
+        DB::transaction(function() use ($category, $attributes) {
+            $this->product->save();
 
-        $this->product->save();
+            if ($this->updateThumb) {
+                $this->product->clearMediaCollection('products');
+                $this->product
+                    ->addMedia($this->thumbnail)
+                    ->toMediaCollection('products');
 
-        if ($this->updateThumb) {
-            $this->product->clearMediaCollection('products');
-            $this->product
-                ->addMedia($this->thumbnail)
-                ->toMediaCollection('products');
+                $this->updateThumb = false;
+            }
 
-            $this->updateThumb = false;
-        }
-
-        $this->product->categories()->sync($category);
-        $this->product->attributes()->sync($attributes);
-
+            $this->product->categories()->sync($category);
+            $this->product->attributes()->sync($attributes);
+        });
 
         $message = $this->editing
             ? "Товар '{$this->product->title}' успешно отредактирован"
