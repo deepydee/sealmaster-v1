@@ -105,7 +105,8 @@
                                     class="block absolute w-6 h-6 bg-white rounded-full border-4 appearance-none cursor-pointer focus:outline-none toggle-checkbox transition duration-700" />
                                 <label for="isPublished"
                                     class="block overflow-hidden h-6 bg-gray-300 rounded-full cursor-pointer toggle-label transition duration-500"></label>
-                            </div>
+                                    <x-input-error :messages="$errors->get('post.is_published')" class="mt-2" />
+                                </div>
                         </div>
 
                         <div class="mb-4">

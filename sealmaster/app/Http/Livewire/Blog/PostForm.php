@@ -39,7 +39,7 @@ class PostForm extends Component
             'post.blog_category_id' => ['required', 'integer', 'exists:blog_categories,id'],
             'post.user_id' => ['required', 'integer', 'exists:users,id'],
             'tags' => ['nullable', 'array'],
-            'post.is_published' => ['integer'],
+            'post.is_published' => ['boolean'],
             'thumbnail' => ['nullable', 'image'],
         ];
     }
@@ -54,6 +54,8 @@ class PostForm extends Component
 
             $this->tags = $this->post->tags()
                  ->pluck('id')->toArray();
+        } else {
+            $this->post->is_published = false;
         }
     }
 
